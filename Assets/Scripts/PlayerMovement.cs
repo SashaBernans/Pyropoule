@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     private Animator animator;
-    private bool hasJumped = false;
+    private bool isRunning = false;
 
 
     private Rigidbody2D rb;
@@ -35,9 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
             // Trigger the jump animation
             animator.SetTrigger("Jump");
-
-            // Set a flag to prevent multiple jump animations
-            hasJumped = true;
         }
     }
 
@@ -47,12 +44,19 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 movement = new Vector2(horizontalInput * speed, rb.velocity.y);
         rb.velocity = movement;
+
+        ManageRunAnimation();
     }
 
-    // You may want to reset the jump flag when the player lands or finishes the jump animation
-    public void OnLanding()
+    private void ManageRunAnimation()
     {
-        // Reset the jump flag
-        hasJumped = false;
+        if (Math.Abs(rb.velocity.x) > 1)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
     }
 }
