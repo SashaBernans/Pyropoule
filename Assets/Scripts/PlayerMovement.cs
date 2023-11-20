@@ -10,10 +10,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    private bool isRunning = false;
 
 
     private Rigidbody2D rb;
+    private int nbBlocksUnderPlayer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +32,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (nbBlocksUnderPlayer>0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            if (Input.GetButtonDown("Jump"))
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
-            // Trigger the jump animation
-            animator.SetTrigger("Jump");
+                //Trigger l'animation Jump
+                animator.SetTrigger("Jump");
+            }
         }
     }
 
@@ -75,19 +79,37 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(collision.collider.gameObject.tag == "Platform")
+        if(other.gameObject.tag == "HardBlock" | other.gameObject.tag == "Platform")
         {
             animator.SetBool("isJumping", false);
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D other)
     {
-        if (collision.collider.gameObject.tag == "Platform")
+        if (other.gameObject.tag == "HardBlock" | other.gameObject.tag == "Platform")
         {
             animator.SetBool("isJumping", true);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "HardBlock" | other.gameObject.tag == "Platform")
+        {
+            nbBlocksUnderPlayer++;
+        }
+        Debug.Log(nbBlocksUnderPlayer);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "HardBlock" | other.gameObject.tag == "Platform")
+        {
+            nbBlocksUnderPlayer--;
+        }
+        Debug.Log(nbBlocksUnderPlayer);
     }
 }
