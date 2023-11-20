@@ -10,10 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-
-
     private Rigidbody2D rb;
     private int nbBlocksUnderPlayer = 0;
+    private bool isCollidingWithPlatform;
 
     // Start is called before the first frame update
     void Start()
@@ -46,13 +45,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        if (nbBlocksUnderPlayer==0 && isCollidingWithPlatform)
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
+        else
+        {
+            float horizontalInput = Input.GetAxis("Horizontal");
 
-        Vector2 movement = new Vector2(horizontalInput * speed, rb.velocity.y);
-        rb.velocity = movement;
+            Vector2 movement = new Vector2(horizontalInput * speed, rb.velocity.y);
+            rb.velocity = movement;
 
-        ManageLookingDirection();
-        ManageRunAnimation();
+            ManageLookingDirection();
+            ManageRunAnimation();
+        }
     }
 
     private void ManageLookingDirection()
@@ -84,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "HardBlock" | other.gameObject.tag == "Platform")
         {
             animator.SetBool("isJumping", false);
+            isCollidingWithPlatform = true;
         }
     }
 
@@ -92,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "HardBlock" | other.gameObject.tag == "Platform")
         {
             animator.SetBool("isJumping", true);
+            isCollidingWithPlatform = false;
         }
     }
 
