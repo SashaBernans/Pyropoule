@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private bool isRunning = false;
 
 
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -45,7 +47,20 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movement = new Vector2(horizontalInput * speed, rb.velocity.y);
         rb.velocity = movement;
 
+        ManageLookingDirection();
         ManageRunAnimation();
+    }
+
+    private void ManageLookingDirection()
+    {
+        if (rb.velocity.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (rb.velocity.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
     private void ManageRunAnimation()
@@ -57,6 +72,22 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("isRunning", false);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.gameObject.tag == "Platform")
+        {
+            animator.SetBool("isJumping", false);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.tag == "Platform")
+        {
+            animator.SetBool("isJumping", true);
         }
     }
 }
