@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5028379239563800092}
   - component: {fileID: 8566875508192604114}
   - component: {fileID: 4914783385507091819}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,3 +249,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4683705035395039635, guid: 9acecd6f0407c9446a73ca7fcd856441, type: 3}
+  projectileSpeed: 15

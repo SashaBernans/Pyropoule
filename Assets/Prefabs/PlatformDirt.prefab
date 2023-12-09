@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 90210830719512187}
   - component: {fileID: -5901754388741594744}
   - component: {fileID: -3032379196619267044}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlatformDirt
   m_TagString: HardBlock
   m_Icon: {fileID: 0}
