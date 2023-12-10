@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3032379196619267044}
   - component: {fileID: 3462348314122096196}
   m_Layer: 6
-  m_Name: PlatformDirt
+  m_Name: DirtBlock
   m_TagString: HardBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

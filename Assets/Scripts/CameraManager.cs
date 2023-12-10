@@ -13,6 +13,6 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(transform.up * 1 * Time.deltaTime);
+        transform.Translate(transform.up * 0 * Time.deltaTime);
     }
 }
