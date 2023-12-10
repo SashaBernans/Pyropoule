@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5028379239563800092}
   - component: {fileID: 8566875508192604114}
   - component: {fileID: 4914783385507091819}
+  - component: {fileID: 3861348852541285946}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -249,4 +250,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4683705035395039635, guid: 9acecd6f0407c9446a73ca7fcd856441, type: 3}
+  wParticleSystemPrefab: {fileID: 8663270377263006825, guid: 23f828956de7dcd4fa837b3f409c50ff, type: 3}
   projectileSpeed: 15
+--- !u!114 &3861348852541285946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3200998783154030255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc25b37c00529845be110668a8258ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

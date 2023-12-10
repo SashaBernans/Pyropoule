@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 90210830719512187}
   - component: {fileID: -5901754388741594744}
   - component: {fileID: -3032379196619267044}
+  - component: {fileID: 3462348314122096196}
   m_Layer: 6
   m_Name: PlatformDirt
   m_TagString: HardBlock
@@ -159,3 +160,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3462348314122096196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487076400175547261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe0d46d03e162b42af0aca848fccabe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
