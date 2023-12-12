@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
+    private float smoothSpeed = 0.125f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,16 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(transform.up * 0 * Time.deltaTime);
+        
+    }
+
+    void LateUpdate()
+    {
+        if (player != null)
+        {
+            Vector3 desiredPosition = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+            transform.position = smoothedPosition;
+        }
     }
 }
