@@ -10,10 +10,13 @@ public class PlateformGeneration : MonoBehaviour
     private const float UNITS_BETWEEN_LONG_PLATEFORM_LAYERS = 2.1f;
 
     [SerializeField] private GameObject dirtBlockPrefab;
+    [SerializeField] private GameObject waterBlockPrefab;
     [SerializeField] private GameObject player;
     private List<GameObject> dirtBlockPool;
+    private List<GameObject> waterBlockPool;
 
     private int dirtBlockPoolSize = 220;
+    private int waterBlockPoolSize = 220;
 
     private float lastLongPlateformLayerY = -4.4f;
 
@@ -22,7 +25,7 @@ public class PlateformGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitializePlateformDirtPool();
+        InitializeBlockPools();
         /*GameObject p1 =GenerateLongPlatform(Random.Range(1, 5));
         GameObject p2 = GenerateLongPlatform(Random.Range(1, 5));
         GameObject p3 = GenerateLongPlatform(Random.Range(1, 5));
@@ -42,21 +45,31 @@ public class PlateformGeneration : MonoBehaviour
         for (int i = 0;i<3;i++)
         {
             GameObject p = GenerateLongPlatform(Random.Range(1, 5));
-            PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS);
+            PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
         }
         lastLongPlateformLayerY += UNITS_BETWEEN_LONG_PLATEFORM_LAYERS;
     }
 
-    private void InitializePlateformDirtPool()
+    private void InitializeBlockPools()
     {
         dirtBlockPool = new List<GameObject>();
 
-        // Instancie une liste de newPlatformDirt inactif
+        // Instancie une liste de dirtBlock inactif
         for (int i = 0; i < dirtBlockPoolSize; i++)
         {
-            GameObject newPlatformDirt = Instantiate(dirtBlockPrefab, transform.position, Quaternion.identity);
-            newPlatformDirt.SetActive(false);
-            dirtBlockPool.Add(newPlatformDirt);
+            GameObject newDirtBlock = Instantiate(dirtBlockPrefab, transform.position, Quaternion.identity);
+            newDirtBlock.SetActive(false);
+            dirtBlockPool.Add(newDirtBlock);
+        }
+
+        waterBlockPool = new List<GameObject>();
+
+        // Instancie une liste de waterBlock inactif
+        for (int i = 0; i < dirtBlockPoolSize; i++)
+        {
+            GameObject newWaterBlock = Instantiate(waterBlockPrefab, transform.position, Quaternion.identity);
+            newWaterBlock.SetActive(false);
+            waterBlockPool.Add(newWaterBlock);
         }
     }
 
@@ -64,32 +77,52 @@ public class PlateformGeneration : MonoBehaviour
     {
         GameObject longPlatform = new GameObject();
         Vector3 previousBlockPosition = new Vector3(0, 0, 0);
-        //longPlatform.transform.position = new Vector3(3, 3, 0);
+        int random = Random.Range(0, 3);
 
         for (int i = 0; i < platformLenght; i++)
         {
-            // Trouver platformDirt inactif dans la liste
-            GameObject newPlatformDirt = dirtBlockPool.Find(p => !p.activeInHierarchy);
-            if (newPlatformDirt == null)
+            GameObject newBlock = null;
+
+            if (random ==0)
+            {
+                newBlock = waterBlockPool.Find(p => !p.activeInHierarchy);
+            }
+            else
+            {
+                newBlock = dirtBlockPool.Find(p => !p.activeInHierarchy);
+            }
+
+            if (newBlock == null)
             {
                 return longPlatform;
             }
-            newPlatformDirt.transform.parent = longPlatform.transform;
-            newPlatformDirt.SetActive(true);
-            newPlatformDirt.transform.position = new Vector3(previousBlockPosition.x + UNITS_BETWEEN_ADJACENT_BLOCKS, longPlatform.transform.position.y, 0);
-            previousBlockPosition = newPlatformDirt.transform.position;
+            newBlock.transform.parent = longPlatform.transform;
+            newBlock.SetActive(true);
+            newBlock.transform.position = new Vector3(previousBlockPosition.x + UNITS_BETWEEN_ADJACENT_BLOCKS, longPlatform.transform.position.y, 0);
+            previousBlockPosition = newBlock.transform.position;
         }
         return longPlatform;
     }
 
-    private void PlatformPlacing(GameObject longPlatform, float y)
+    private void PlatformPlacing(GameObject longPlatform, float y, int numberOfPlatformsInLayer)
     {
-        float x = Random.Range(MIN_X_FOR_BLOCK, MAX_X_FOR_BLOCK);
+        float xSize = longPlatform.transform.childCount*0.79f;
 
-        Vector3 newPosition = new Vector3(
-            x,
-            y,
-            0);
+
+        float x = 0;
+        if (numberOfPlatformsInLayer==0)
+        {
+            x = Random.Range(MIN_X_FOR_BLOCK, -2.81f - xSize);
+        }
+        if (numberOfPlatformsInLayer == 1)
+        {
+            x = Random.Range(-2.81f, 2.82f - xSize);
+        }
+        if (numberOfPlatformsInLayer == 2)
+        {
+            x = Random.Range(2.82f, MAX_X_FOR_BLOCK - xSize);
+        }
+        Vector3 newPosition = new Vector3(x,y,0);
 
         longPlatform.transform.position = newPosition;
     }

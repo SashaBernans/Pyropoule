@@ -50,3 +50,6 @@ TagManager:
   - name: Player
     uniqueID: 3347541259
     locked: 0
+  - name: PyroPoule
+    uniqueID: 1425881783
+    locked: 0
