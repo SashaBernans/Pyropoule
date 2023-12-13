@@ -33,8 +33,8 @@ Transform:
   m_GameObject: {fileID: 3200998783154030255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.92, y: -3.25, z: 0}
-  m_LocalScale: {x: 0.14263, y: 0.14263, z: 0.14263}
+  m_LocalPosition: {x: -9.92, y: -3.2515, z: 0}
+  m_LocalScale: {x: 0.098505974, y: 0.098505974, z: 0.098505974}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -250,7 +250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4683705035395039635, guid: 9acecd6f0407c9446a73ca7fcd856441, type: 3}
-  wParticleSystemPrefab: {fileID: 8663270377263006825, guid: 23f828956de7dcd4fa837b3f409c50ff, type: 3}
   projectileSpeed: 15
 --- !u!114 &3861348852541285946
 MonoBehaviour:
