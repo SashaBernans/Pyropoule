@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1282402458747111976}
   - component: {fileID: -5854163937905545183}
   - component: {fileID: 1484026771139851561}
+  - component: {fileID: 1611340240603034594}
   m_Layer: 6
   m_Name: PlatformWater1_0
   m_TagString: Platform
@@ -100,8 +101,8 @@ PlatformEffector2D:
     m_Bits: 4294967295
   m_RotationalOffset: 0
   m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_UseOneWayGrouping: 1
+  m_SurfaceArc: 102.65
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -151,3 +152,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.31, y: 5.24}
   m_EdgeRadius: 0
+--- !u!50 &1611340240603034594
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835370547096143546}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

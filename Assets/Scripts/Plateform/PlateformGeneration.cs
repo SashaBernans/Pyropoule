@@ -37,17 +37,26 @@ public class PlateformGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        StartCoroutine("WaitFiveSeconds");
+    }
+
+    IEnumerator WaitFiveSeconds()
+    {
+        yield return new WaitForSeconds(2);
         GenerateTerrain();
     }
 
     private void GenerateTerrain()
     {
-        for (int i = 0;i<3;i++)
+        if(dirtBlockPool.Find(p => !p.activeInHierarchy)!=null && waterBlockPool.Find(p => !p.activeInHierarchy) != null)
         {
-            GameObject p = GenerateLongPlatform(Random.Range(1, 5));
-            PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject p = GenerateLongPlatform(Random.Range(1, 5));
+                PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
+            }
+            lastLongPlateformLayerY += UNITS_BETWEEN_LONG_PLATEFORM_LAYERS;
         }
-        lastLongPlateformLayerY += UNITS_BETWEEN_LONG_PLATEFORM_LAYERS;
     }
 
     private void InitializeBlockPools()

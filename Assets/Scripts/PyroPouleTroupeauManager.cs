@@ -15,4 +15,13 @@ public class PyroPouleTroupeauManager : MonoBehaviour
     {
         transform.Translate(transform.up * 1 * Time.deltaTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "HardBlock" | collision.tag == "Platform")
+        {
+            collision.gameObject.SetActive(false);
+            Debug.Log("HardBLock in trigger");
+        }
+    }
 }
