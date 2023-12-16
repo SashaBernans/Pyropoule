@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7548285023146192813}
   - component: {fileID: 5398256146525982008}
   - component: {fileID: 2007862555662377300}
+  - component: {fileID: 6760935278219279335}
   m_Layer: 0
   m_Name: PyroStill_0
   m_TagString: Untagged
@@ -200,3 +201,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.47000003, y: 1.1699998}
   m_Direction: 0
+--- !u!114 &6760935278219279335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7776874323900720596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1a720f5dc8b454dbf77d0fd32d73c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1579487035013278943, guid: ba1cb1919d512a64c97bb74e6daac4b2, type: 3}
+  projectileSpeed: 10

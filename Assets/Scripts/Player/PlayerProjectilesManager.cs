@@ -5,36 +5,18 @@ using UnityEngine;
 public class PlayerProjectilesManager : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab;
-    //[SerializeField] private GameObject wParticleSystemPrefab;
     [SerializeField] private float projectileSpeed;
     private int poolSize = 10; // Nombre de projectile instancié dès le début
 
     private SpriteRenderer spriteRenderer;
 
     private List<GameObject> projectilePool;
-    //private List<GameObject> particalSystemPool;
-
-    //public List<GameObject> ParticalSystemPool { get => particalSystemPool; set => particalSystemPool = value; }
 
     void Start()
     {
         InitializeProjectilePool();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    /*
-    private void InitializeParticleSystemPool()
-    {
-        ParticalSystemPool = new List<GameObject>();
-
-        // Instancie une liste de particalSystem inactif
-        for (int i = 0; i < poolSize; i++)
-        {
-            GameObject newParticalSystem = Instantiate(wParticleSystemPrefab, transform.position, Quaternion.identity);
-            newParticalSystem.SetActive(false);
-            ParticalSystemPool.Add(newParticalSystem);
-        }
-    }*/
 
     void Update()
     {
@@ -56,7 +38,6 @@ public class PlayerProjectilesManager : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             GameObject newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            //newProjectile.GetComponent<WaterProjectileCollisions>().ParticalSystemGameObject = particalSystemPool[i];
             newProjectile.SetActive(false);
             projectilePool.Add(newProjectile);
         }

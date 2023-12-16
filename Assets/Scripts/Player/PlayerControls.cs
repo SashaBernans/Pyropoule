@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ManageFailSafeForContactWithBlock(Collision2D collision)
     {
-        if (collision.gameObject.tag == "HardBlock" && !IsGrounded())
+        if (collision.gameObject.tag == "HardBlock" | collision.gameObject.tag == "Wall" && !IsGrounded())
         {
             if (collision.transform.position.x > transform.position.x)
                 collisionFailSafe = hardBlockToTheRight;
@@ -123,7 +123,6 @@ public class PlayerMovement : MonoBehaviour
             coyoteTime = coyoteTimeMax;
             animator.SetBool("isJumping", false);
         }
-        Debug.Log(nbBlocksUnderPlayer);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -132,7 +131,6 @@ public class PlayerMovement : MonoBehaviour
         {
             nbBlocksUnderPlayer--;
         }
-        Debug.Log(nbBlocksUnderPlayer);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -147,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void NullifyFailSafeForContactWithBlock(Collision2D collision)
     {
-        if (collision.gameObject.tag == "HardBlock" && !IsGrounded() && collisionFailSafe != 0)
+        if (collision.gameObject.tag == "HardBlock" | collision.gameObject.tag == "Wall" && !IsGrounded() && collisionFailSafe != 0)
             collisionFailSafe = 0;
     }
 }

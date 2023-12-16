@@ -10,7 +10,7 @@ public class PauseManager : MonoBehaviour
     { 
         if (Input.GetKeyDown(KeyCode.P)) 
         { 
-            gameIsPaused = !gameIsPaused; 
+            gameIsPaused = !gameIsPaused;
             PauseGame();
         } 
     }
