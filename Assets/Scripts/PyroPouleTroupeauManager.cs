@@ -17,12 +17,13 @@ public class PyroPouleTroupeauManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(this.transform.position, player.transform.position);
-        if (distance > 10f)
+        //float distance = Vector3.Distance(this.transform.position, player.transform.position);
+        float distance = player.transform.position.y - this.transform.position.y;
+        if (distance > 7f)
         {
             speed = 5f;
         }
-        if (distance < 10f)
+        if (distance < 7f)
         {
             speed = 1f;
         }

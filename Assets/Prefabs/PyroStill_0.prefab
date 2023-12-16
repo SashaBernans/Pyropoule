@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5398256146525982008}
   - component: {fileID: 2007862555662377300}
   - component: {fileID: 6760935278219279335}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PyroStill_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

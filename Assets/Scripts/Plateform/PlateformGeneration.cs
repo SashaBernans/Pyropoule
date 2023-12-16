@@ -13,11 +13,7 @@ public class PlateformGeneration : MonoBehaviour
     [SerializeField] private GameObject dirtBlockPrefab;
     [SerializeField] private GameObject waterBlockPrefab;
     [SerializeField] private GameObject player;
-    private List<GameObject> dirtBlockPool;
-    private List<GameObject> waterBlockPool;
-
-    private const int DIRT_BLOCK_POOL_SIZE = 64;
-    private const int WATER_BLOCK_POOL_SIZE = 64;
+    [SerializeField] private AssetRecycler assetRecycler;
 
     private float lastLongPlateformLayerY = -4.4f;
 
@@ -26,20 +22,14 @@ public class PlateformGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitializeBlockPools();
-        /*GameObject p1 =GenerateLongPlatform(Random.Range(1, 5));
-        GameObject p2 = GenerateLongPlatform(Random.Range(1, 5));
-        GameObject p3 = GenerateLongPlatform(Random.Range(1, 5));
-        PlatformPlacing(p1,-2.3f);
-        PlatformPlacing(p2, -0.2f);
-        PlatformPlacing(p3, -0.2f);*/
+        assetRecycler = AssetRecycler.Instance;
+        StartCoroutine(GenerateTerrainCoroutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        //StartCoroutine("GenerateTerrainCoroutine");
-        GenerateTerrain();
+        
     }
 
     private bool CheckInactiveCount(List<GameObject> objects, int countThreshold)
@@ -62,13 +52,16 @@ public class PlateformGeneration : MonoBehaviour
 
     IEnumerator GenerateTerrainCoroutine()
     {
-        GenerateTerrain();
-        yield return new WaitForSeconds(2);
+        while (true)
+        {
+            GenerateTerrain();
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     private void GenerateTerrain()
     {
-        if(CheckInactiveCount(dirtBlockPool, MAX_BLOCKS_PER_LAYER) && CheckInactiveCount(waterBlockPool, MAX_BLOCKS_PER_LAYER))
+        if(CheckInactiveCount(assetRecycler.DirtBlockPool, MAX_BLOCKS_PER_LAYER) && CheckInactiveCount(assetRecycler.WaterBlockPool, MAX_BLOCKS_PER_LAYER))
         {
             for (int i = 0; i < 3; i++)
             {
@@ -76,29 +69,6 @@ public class PlateformGeneration : MonoBehaviour
                 PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
             }
             lastLongPlateformLayerY += UNITS_BETWEEN_LONG_PLATEFORM_LAYERS;
-        }
-    }
-
-    private void InitializeBlockPools()
-    {
-        dirtBlockPool = new List<GameObject>();
-
-        // Instancie une liste de dirtBlock inactif
-        for (int i = 0; i < DIRT_BLOCK_POOL_SIZE; i++)
-        {
-            GameObject newDirtBlock = Instantiate(dirtBlockPrefab, transform.position, Quaternion.identity);
-            newDirtBlock.SetActive(false);
-            dirtBlockPool.Add(newDirtBlock);
-        }
-
-        waterBlockPool = new List<GameObject>();
-
-        // Instancie une liste de waterBlock inactif
-        for (int i = 0; i < WATER_BLOCK_POOL_SIZE; i++)
-        {
-            GameObject newWaterBlock = Instantiate(waterBlockPrefab, transform.position, Quaternion.identity);
-            newWaterBlock.SetActive(false);
-            waterBlockPool.Add(newWaterBlock);
         }
     }
 
@@ -114,11 +84,11 @@ public class PlateformGeneration : MonoBehaviour
 
             if (random ==0)
             {
-                newBlock = waterBlockPool.Find(p => !p.activeInHierarchy);
+                newBlock = assetRecycler.WaterBlockPool.Find(p => !p.activeInHierarchy);
             }
             else
             {
-                newBlock = dirtBlockPool.Find(p => !p.activeInHierarchy);
+                newBlock = assetRecycler.DirtBlockPool.Find(p => !p.activeInHierarchy);
             }
 
             if (newBlock == null)

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bf76fb36c838c124dbd4810e38617654
+guid: 1c7197c01572b8644ba7979f921ff576
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2974551222031317680
-    second: PlatformWater2_0
+      213: 8762739399243840092
+    second: PlatformWater2 1_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlatformWater2_0
+      name: PlatformWater2 1_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 545
-        height: 528
+        x: 0
+        y: 0
+        width: 64
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0558e946c6548b6d0800000000000000
-      internalID: -2974551222031317680
+      spriteID: c5abf3f7e018b9970800000000000000
+      internalID: 8762739399243840092
       vertices: []
       indices: 
       edges: []
