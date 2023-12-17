@@ -38,7 +38,8 @@ public class PyroPouleTroupeauManager : MonoBehaviour
             {
                 GameObject longPlatform = collision.gameObject.transform.parent.gameObject;
                 collision.gameObject.transform.parent.DetachChildren();
-                Destroy(longPlatform);
+                longPlatform.transform.DetachChildren();
+                longPlatform.SetActive(false);
             }
             collision.gameObject.SetActive(false);
         }

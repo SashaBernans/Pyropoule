@@ -10,9 +10,6 @@ public class PlateformGeneration : MonoBehaviour
     private const float UNITS_BETWEEN_LONG_PLATEFORM_LAYERS = 2.1f;
     private const int MAX_BLOCKS_PER_LAYER = 12;
 
-    [SerializeField] private GameObject dirtBlockPrefab;
-    [SerializeField] private GameObject waterBlockPrefab;
-    [SerializeField] private GameObject player;
     [SerializeField] private AssetRecycler assetRecycler;
 
     private float lastLongPlateformLayerY = -4.4f;
@@ -74,7 +71,8 @@ public class PlateformGeneration : MonoBehaviour
 
     private GameObject GenerateLongPlatform(int platformLenght)
     {
-        GameObject longPlatform = new GameObject("LongPlatform");
+        GameObject longPlatform = assetRecycler.LongPlatformPool.Find(p => !p.activeInHierarchy);
+        longPlatform.SetActive(true);
         Vector3 previousBlockPosition = new Vector3(0, 0, 0);
         int random = Random.Range(0, 3);
 
@@ -105,11 +103,11 @@ public class PlateformGeneration : MonoBehaviour
 
     private void PlatformPlacing(GameObject longPlatform, float y, int numberOfPlatformsInLayer)
     {
-        float xSize = longPlatform.transform.childCount*0.79f;
+        float xSize = longPlatform.transform.childCount * 0.79f;
 
 
         float x = 0;
-        if (numberOfPlatformsInLayer==0)
+        if (numberOfPlatformsInLayer == 0)
         {
             x = Random.Range(MIN_X_FOR_BLOCK, -2.81f - xSize);
         }
@@ -121,7 +119,7 @@ public class PlateformGeneration : MonoBehaviour
         {
             x = Random.Range(2.82f, MAX_X_FOR_BLOCK - xSize);
         }
-        Vector3 newPosition = new Vector3(x,y,0);
+        Vector3 newPosition = new Vector3(x, y, 0);
 
         longPlatform.transform.position = newPosition;
     }
