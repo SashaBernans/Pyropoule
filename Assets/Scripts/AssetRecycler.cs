@@ -40,16 +40,18 @@ public class AssetRecycler : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+
+        dirtBlockPool = InstanciateGameObjectPool(dirtBlockPrefab, DIRT_BLOCK_POOL_SIZE);
+        waterBlockPool = InstanciateGameObjectPool(waterBlockPrefab, WATER_BLOCK_POOL_SIZE);
+        pyropouleProjectilePool = InstanciateGameObjectPool(pyropouleProjectilePrefab, pyropouleProjectilePoolSize);
+        playerProjectilePool = InstanciateGameObjectPool(playerProjectilePrefab, playerProjectilePoolSize);
+        longPlatformPool = InstanciateGameObjectPool(longPlatformPrefab, LONG_PLATFORM_POOL_SIZE);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        dirtBlockPool = InstanciateGameObjectPool(dirtBlockPrefab, DIRT_BLOCK_POOL_SIZE);
-        waterBlockPool = InstanciateGameObjectPool(waterBlockPrefab, WATER_BLOCK_POOL_SIZE);
-        pyropouleProjectilePool = InstanciateGameObjectPool(pyropouleProjectilePrefab, pyropouleProjectilePoolSize);
-        playerProjectilePool = InstanciateGameObjectPool(playerProjectilePrefab, playerProjectilePoolSize);
-        longPlatformPool = InstanciateGameObjectPool(longPlatformPrefab,LONG_PLATFORM_POOL_SIZE);
+        
     }
 
     // Update is called once per frame

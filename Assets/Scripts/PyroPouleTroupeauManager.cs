@@ -29,7 +29,7 @@ public class PyroPouleTroupeauManager : MonoBehaviour
         }
         transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "HardBlock" | collision.tag == "Platform")
@@ -39,6 +39,7 @@ public class PyroPouleTroupeauManager : MonoBehaviour
                 GameObject longPlatform = collision.gameObject.transform.parent.gameObject;
                 collision.gameObject.transform.parent.DetachChildren();
                 longPlatform.transform.DetachChildren();
+                Debug.Log(longPlatform.transform.childCount);
                 longPlatform.SetActive(false);
             }
             collision.gameObject.SetActive(false);

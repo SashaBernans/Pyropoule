@@ -95,8 +95,8 @@ public class PlateformGeneration : MonoBehaviour
             }
             newBlock.transform.parent = longPlatform.transform;
             newBlock.SetActive(true);
-            newBlock.transform.position = new Vector3(previousBlockPosition.x + UNITS_BETWEEN_ADJACENT_BLOCKS, longPlatform.transform.position.y, 0);
-            previousBlockPosition = newBlock.transform.position;
+            newBlock.transform.localPosition = new Vector3(previousBlockPosition.x + UNITS_BETWEEN_ADJACENT_BLOCKS, 0, 0);
+            previousBlockPosition = newBlock.transform.localPosition;
         }
         return longPlatform;
     }
