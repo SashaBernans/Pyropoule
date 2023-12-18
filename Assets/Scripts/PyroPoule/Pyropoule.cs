@@ -7,11 +7,13 @@ public class Pyropoule : MonoBehaviour
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float fireRate;
 
+    private AudioSource audioSource;
     private bool canShoot;
     // Start is called before the first frame update
     void Start()
     {
         assetRecycler = AssetRecycler.Instance;
+        audioSource = GetComponent<AudioSource>();
         canShoot = true;
     }
 
@@ -64,10 +66,9 @@ public class Pyropoule : MonoBehaviour
     private void Shoot(GameObject target)
     {
         GameObject projectile = assetRecycler.PyropouleProjectilePool.Find(p => !p.activeInHierarchy);
-        Debug.Log(projectile);
         projectile.SetActive(true);
         projectile.transform.position = transform.position;
-        //Vector2 direction = target.transform.position - transform.position;
+        audioSource.PlayOneShot(SoundManager.Instance.ShootFlame);
         projectile.GetComponent<ProjectileMovement>().Target = target.transform.position;
         canShoot = false;
     }

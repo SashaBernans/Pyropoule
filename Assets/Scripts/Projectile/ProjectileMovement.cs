@@ -24,6 +24,6 @@ public class ProjectileMovement : MonoBehaviour
     private void Movement()
     {
         Vector3 direction = (target - transform.position).normalized;
-        transform.position += direction * 3f * Time.deltaTime;
+        transform.position += direction * speed * Time.deltaTime;
     }
 }
