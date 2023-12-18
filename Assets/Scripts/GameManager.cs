@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     private const int maxLives = 3;
     private int lives = maxLives;
-    private int score = 0;
+    private float score = 0f;
 
     Text playerScoreText;
     Text playerLivesText;
@@ -60,9 +60,8 @@ public class GameManager : MonoBehaviour
         playerLivesText.text = lives.ToString();
     }
 
-    public void AddScore(int scoreToAdd)
+    public void ChangeScore(float score)
     {
-        score += scoreToAdd;
         playerScoreText.text = score.ToString();
     }
 }

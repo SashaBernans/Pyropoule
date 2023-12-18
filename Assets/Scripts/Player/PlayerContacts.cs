@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerContacts : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
@@ -20,6 +21,7 @@ public class PlayerContacts : MonoBehaviour
     {
         if (collision.gameObject.tag == "Flame")
         {
+            gameManager.PlayerDie();
             Debug.Log("ouch");
         }
     }

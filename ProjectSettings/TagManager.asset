@@ -10,6 +10,8 @@ TagManager:
   - Wall
   - Pyropoule
   - Flame
+  - TextLives
+  - TextScore
   layers:
   - Default
   - TransparentFX
