@@ -43,7 +43,7 @@ public class AssetRecycler : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         dirtBlockPool = InstanciateGameObjectPool(dirtBlockPrefab, DIRT_BLOCK_POOL_SIZE);
         waterBlockPool = InstanciateGameObjectPool(waterBlockPrefab, WATER_BLOCK_POOL_SIZE);

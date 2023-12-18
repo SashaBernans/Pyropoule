@@ -64,7 +64,7 @@ public class PlatformGenerator : MonoBehaviour
             {
                 GameObject p = GenerateLongPlatform(Random.Range(1, 5));
                 PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
-                int random =  Random.Range(1,6);
+                int random =  Random.Range(1,10);
                 if (random == 1)
                 {
                     GenerateEnemy(p);

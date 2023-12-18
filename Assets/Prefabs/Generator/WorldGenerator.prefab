@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66d197468444ee46953593ca936f104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pyropouleSpawnRatePercentage: 20
   assetRecycler: {fileID: 0}
 --- !u!114 &1222210988034189865
 MonoBehaviour:

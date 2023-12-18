@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private const int maxLives = 3;
     private int lives = maxLives;
     private float score = 0f;
+    private static float staticScore;
 
     Text playerScoreText;
     Text playerLivesText;
@@ -54,18 +55,35 @@ public class GameManager : MonoBehaviour
                 playerScoreText = textToLink;
                 playerScoreText.text = score.ToString();
                 break;
+
+            case "TextStaticScore":
+                playerScoreText = textToLink;
+                playerScoreText.text = StaticData.scoreText;
+                break;
         }
     }
 
     public void GameOver()
     {
+        string keepScore = playerScoreText.text;
+        StaticData.scoreText = keepScore;
         SceneManager.LoadScene("SceneGameOver");
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Scene1");
+        lives = maxLives;
     }
 
     public void LooseLife()
     {
         lives--;
         playerLivesText.text = lives.ToString();
+        if (lives <=0)
+        {
+            GameOver();
+        }
     }
 
     public void ChangeScore(float score)

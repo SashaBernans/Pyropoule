@@ -12,6 +12,7 @@ TagManager:
   - Flame
   - TextLives
   - TextScore
+  - TextStaticScore
   layers:
   - Default
   - TransparentFX
