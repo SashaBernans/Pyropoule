@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PyroPouleTroupeauManager : MonoBehaviour
+public class TroupeauManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     private float speed = 1f;
@@ -39,9 +39,12 @@ public class PyroPouleTroupeauManager : MonoBehaviour
                 GameObject longPlatform = collision.gameObject.transform.parent.gameObject;
                 collision.gameObject.transform.parent.DetachChildren();
                 longPlatform.transform.DetachChildren();
-                Debug.Log(longPlatform.transform.childCount);
                 longPlatform.SetActive(false);
             }
+            collision.gameObject.SetActive(false);
+        }
+        if (collision.tag == "Pyropoule")
+        {
             collision.gameObject.SetActive(false);
         }
     }

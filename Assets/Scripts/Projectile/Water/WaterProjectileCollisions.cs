@@ -23,6 +23,5 @@ public class WaterProjectileCollisions : MonoBehaviour
         GameObject newParticalSystem = Instantiate(particalSystemPrefab, transform.position, Quaternion.identity);
         newParticalSystem.transform.position = transform.position;
         gameObject.SetActive(false);
-        Debug.Log("collisionDetected");
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     private float smoothSpeed = 0.125f;

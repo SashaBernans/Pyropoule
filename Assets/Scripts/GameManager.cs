@@ -1,9 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance = null;
+    public static GameManager Instance { get { return instance; } }
+
+    private const int maxLives = 3;
+    private int lives = maxLives;
+    private int score = 0;
+
+    Text playerScoreText;
+    Text playerLivesText;
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +35,34 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void LinkText(Text textToLink)
+    {
+        switch (textToLink.gameObject.tag)
+        {
+
+            case "TextLives":
+                playerLivesText = textToLink;
+                playerLivesText.text = lives.ToString();
+                break;
+
+            case "TextScore":
+                playerScoreText = textToLink;
+                playerScoreText.text = score.ToString();
+                break;
+        }
+    }
+
+    public void PlayerDie()
+    {
+        lives--;
+        playerLivesText.text = lives.ToString();
+    }
+
+    public void AddScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        playerScoreText.text = score.ToString();
     }
 }

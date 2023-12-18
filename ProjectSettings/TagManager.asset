@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Wall
   - Pyropoule
+  - Flame
   layers:
   - Default
   - TransparentFX

@@ -49,3 +49,4 @@ MonoBehaviour:
   pyropouleProjectilePrefab: {fileID: 1579487035013278943, guid: ba1cb1919d512a64c97bb74e6daac4b2, type: 3}
   playerProjectilePrefab: {fileID: 4683705035395039635, guid: 9acecd6f0407c9446a73ca7fcd856441, type: 3}
   longPlatformPrefab: {fileID: 7854950846500090554, guid: 158f76a5ed7c28c4397968493f1937a8, type: 3}
+  pyropoulePrefab: {fileID: 7776874323900720596, guid: 2baf887f033838946ae687460e884906, type: 3}

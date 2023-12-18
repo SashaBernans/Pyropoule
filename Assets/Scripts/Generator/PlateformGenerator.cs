@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlateformGeneration : MonoBehaviour
+public class PlatformGenerator : MonoBehaviour
 {
     private const float UNITS_BETWEEN_ADJACENT_BLOCKS = 0.79f;
     private const float MIN_X_FOR_BLOCK = -8.44f;
@@ -51,12 +51,12 @@ public class PlateformGeneration : MonoBehaviour
     {
         while (true)
         {
-            GenerateTerrain();
+            GenerateLayer();
             yield return new WaitForSeconds(0.5f);
         }
     }
 
-    private void GenerateTerrain()
+    private void GenerateLayer()
     {
         if(CheckInactiveCount(assetRecycler.DirtBlockPool, MAX_BLOCKS_PER_LAYER) && CheckInactiveCount(assetRecycler.WaterBlockPool, MAX_BLOCKS_PER_LAYER))
         {
@@ -64,6 +64,11 @@ public class PlateformGeneration : MonoBehaviour
             {
                 GameObject p = GenerateLongPlatform(Random.Range(1, 5));
                 PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
+                int random =  Random.Range(1,6);
+                if (random == 1)
+                {
+                    GenerateEnemy(p);
+                }
             }
             lastLongPlateformLayerY += UNITS_BETWEEN_LONG_PLATEFORM_LAYERS;
         }
@@ -73,7 +78,7 @@ public class PlateformGeneration : MonoBehaviour
     {
         GameObject longPlatform = assetRecycler.LongPlatformPool.Find(p => !p.activeInHierarchy);
         longPlatform.SetActive(true);
-        Vector3 previousBlockPosition = new Vector3(0, 0, 0);
+        Vector2 previousBlockPosition = new Vector2(0, 0);
         int random = Random.Range(0, 3);
 
         for (int i = 0; i < platformLenght; i++)
@@ -95,7 +100,7 @@ public class PlateformGeneration : MonoBehaviour
             }
             newBlock.transform.parent = longPlatform.transform;
             newBlock.SetActive(true);
-            newBlock.transform.localPosition = new Vector3(previousBlockPosition.x + UNITS_BETWEEN_ADJACENT_BLOCKS, 0, 0);
+            newBlock.transform.localPosition = new Vector2(previousBlockPosition.x + UNITS_BETWEEN_ADJACENT_BLOCKS, 0);
             previousBlockPosition = newBlock.transform.localPosition;
         }
         return longPlatform;
@@ -119,8 +124,20 @@ public class PlateformGeneration : MonoBehaviour
         {
             x = Random.Range(2.82f, MAX_X_FOR_BLOCK - xSize);
         }
-        Vector3 newPosition = new Vector3(x, y, 0);
+        Vector2 newPosition = new Vector2(x, y);
 
         longPlatform.transform.position = newPosition;
+    }
+
+    private void GenerateEnemy(GameObject platform)
+    {
+        GameObject pyropoule = assetRecycler.PyropoulePool.Find(p => !p.activeInHierarchy);
+        if (pyropoule!=null)
+        {
+            pyropoule.SetActive(true);
+            pyropoule.transform.position = new Vector2(
+                platform.transform.position.x + UNITS_BETWEEN_ADJACENT_BLOCKS, 
+                platform.transform.position.y + UNITS_BETWEEN_ADJACENT_BLOCKS);
+        }
     }
 }
