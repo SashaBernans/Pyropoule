@@ -43,9 +43,13 @@ public class TroupeauManager : MonoBehaviour
             }
             collision.gameObject.SetActive(false);
         }
-        if (collision.tag == "Pyropoule")
+        else if (collision.tag == "Pyropoule")
         {
             collision.gameObject.SetActive(false);
+        }
+        else if (collision.tag == "Player")
+        {
+            GameManager.Instance.GameOver();
         }
     }
 }

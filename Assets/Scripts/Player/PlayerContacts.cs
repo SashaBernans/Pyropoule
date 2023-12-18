@@ -21,7 +21,7 @@ public class PlayerContacts : MonoBehaviour
     {
         if (collision.gameObject.tag == "Flame")
         {
-            gameManager.PlayerDie();
+            gameManager.LooseLife();
             Debug.Log("ouch");
         }
     }
