@@ -1256,6 +1256,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3258453453819740018, guid: f877ef8c57610b44793783d00c51d992, type: 3}
+      propertyPath: bucketSpawnRatePercentage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258453453819740018, guid: f877ef8c57610b44793783d00c51d992, type: 3}
+      propertyPath: pyropouleSpawnRatePercentage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7219982010910838997, guid: f877ef8c57610b44793783d00c51d992, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.26359764

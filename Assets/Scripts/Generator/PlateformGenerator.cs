@@ -9,7 +9,8 @@ public class PlatformGenerator : MonoBehaviour
     private const float MAX_X_FOR_BLOCK = 8.44f;
     private const float UNITS_BETWEEN_LONG_PLATEFORM_LAYERS = 2.1f;
     private const int MAX_BLOCKS_PER_LAYER = 12;
-
+    [SerializeField] private int pyropouleSpawnRatePercentage;
+    [SerializeField] private int bucketSpawnRatePercentage;
     [SerializeField] private AssetRecycler assetRecycler;
 
     private float lastLongPlateformLayerY = -4.4f;
@@ -64,12 +65,11 @@ public class PlatformGenerator : MonoBehaviour
             {
                 GameObject p = GenerateLongPlatform(Random.Range(1, 5));
                 PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
-                int random =  Random.Range(1,10);
-                if (random == 1)
+                if (pyropouleSpawnRatePercentage >= Random.Range(0, 100))
                 {
                     GenerateEnemy(p);
                 }
-                else if (random == 2)
+                else if (bucketSpawnRatePercentage >= Random.Range(0, 100))
                 {
                     SpawnBucket(p);
                 }
@@ -87,9 +87,6 @@ public class PlatformGenerator : MonoBehaviour
                 p.transform.position.x + UNITS_BETWEEN_ADJACENT_BLOCKS,
                 p.transform.position.y + UNITS_BETWEEN_ADJACENT_BLOCKS);
             bucket.SetActive(true);
-            /*bucket.transform.position = new Vector2(
-                p.transform.position.x + UNITS_BETWEEN_ADJACENT_BLOCKS,
-                p.transform.position.y + UNITS_BETWEEN_ADJACENT_BLOCKS);*/
         }
     }
 

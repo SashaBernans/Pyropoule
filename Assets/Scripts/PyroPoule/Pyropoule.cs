@@ -30,23 +30,6 @@ public class Pyropoule : MonoBehaviour
         
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            target = collision.gameObject;
-            Debug.Log("tagerting");
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            target = null;
-        }
-    }*/
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
