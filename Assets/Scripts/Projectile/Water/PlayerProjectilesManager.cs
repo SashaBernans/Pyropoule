@@ -32,7 +32,6 @@ public class PlayerProjectilesManager : MonoBehaviour
         // Trouver projectile inactif dans la liste
         GameObject newProjectile = assetRecycler.PlayerProjectilePool.Find(p => !p.activeInHierarchy);
 
-        // Agrandir la liste si aucun inactif trouvé
         if (newProjectile != null)
         {
             newProjectile.SetActive(true);

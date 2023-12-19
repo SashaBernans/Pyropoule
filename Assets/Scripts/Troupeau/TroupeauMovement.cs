@@ -17,7 +17,6 @@ public class TroupeauManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //float distance = Vector3.Distance(this.transform.position, player.transform.position);
         float distance = player.transform.position.y - this.transform.position.y;
         if (distance > 7f)
         {
@@ -50,6 +49,10 @@ public class TroupeauManager : MonoBehaviour
         else if (collision.tag == "Player")
         {
             GameManager.Instance.GameOver();
+        }
+        else if (collision.tag == "Bucket")
+        {
+            collision.gameObject.SetActive(false);
         }
     }
 }

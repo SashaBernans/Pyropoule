@@ -9,11 +9,14 @@ public class PlayerContacts : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
+    Material defaultMaterial;
+
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.Instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultMaterial = spriteRenderer.material;
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -33,9 +36,17 @@ public class PlayerContacts : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bucket")
+        {
+            gameManager.addLife();
+            audioSource.PlayOneShot(SoundManager.Instance.PowerUp);
+        }
+    }
+
     IEnumerator Flash()
     {
-        Material defaultMaterial = spriteRenderer.material;
         spriteRenderer.material = flashMaterial;
         yield return new WaitForSeconds(0.125f);
         spriteRenderer.material = defaultMaterial;

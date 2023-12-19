@@ -13,6 +13,7 @@ public class AssetRecycler : MonoBehaviour
     public List<GameObject> PlayerProjectilePool { get => playerProjectilePool; set => playerProjectilePool = value; }
     public List<GameObject> LongPlatformPool { get => longPlatformPool; set => longPlatformPool = value; }
     public List<GameObject> PyropoulePool { get => pyropoulePool; set => pyropoulePool = value; }
+    public List<GameObject> BucketPool { get => bucketPool; set => bucketPool = value; }
 
     [SerializeField] private GameObject dirtBlockPrefab;
     [SerializeField] private GameObject waterBlockPrefab;
@@ -20,6 +21,7 @@ public class AssetRecycler : MonoBehaviour
     [SerializeField] private GameObject playerProjectilePrefab;
     [SerializeField] private GameObject longPlatformPrefab;
     [SerializeField] private GameObject pyropoulePrefab;
+    [SerializeField] private GameObject bucketPrefab;
 
     private List<GameObject> dirtBlockPool;
     private List<GameObject> waterBlockPool;
@@ -27,10 +29,12 @@ public class AssetRecycler : MonoBehaviour
     private List<GameObject> playerProjectilePool;
     private List<GameObject> longPlatformPool;
     private List<GameObject> pyropoulePool;
+    private List<GameObject> bucketPool;
 
     private static int pyropouleProjectilePoolSize = 100;
     private static int playerProjectilePoolSize = 10;
     private static int pyropoulePoolSize = 10;
+    private static int bucketPoolSize = 10;
     private const int DIRT_BLOCK_POOL_SIZE = 64;
     private const int WATER_BLOCK_POOL_SIZE = 64;
     private const int LONG_PLATFORM_POOL_SIZE = 128;
@@ -51,6 +55,7 @@ public class AssetRecycler : MonoBehaviour
         playerProjectilePool = InstanciateGameObjectPool(playerProjectilePrefab, playerProjectilePoolSize);
         longPlatformPool = InstanciateGameObjectPool(longPlatformPrefab, LONG_PLATFORM_POOL_SIZE);
         pyropoulePool = InstanciateGameObjectPool(pyropoulePrefab, pyropoulePoolSize);
+        bucketPool = InstanciateGameObjectPool(bucketPrefab, bucketPoolSize);
     }
 
     // Start is called before the first frame update

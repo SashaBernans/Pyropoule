@@ -11,6 +11,7 @@ public class PlayerControls : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     private int nbBlocksUnderPlayer = 0;
 
     private const int hardBlockToTheRight = 1;
@@ -28,6 +29,7 @@ public class PlayerControls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class PlayerControls : MonoBehaviour
     private void InitJumpMovement()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-
+        audioSource.PlayOneShot(SoundManager.Instance.PlayerJump);
         //Trigger l'animation Jump
         animator.SetTrigger("Jump");
 

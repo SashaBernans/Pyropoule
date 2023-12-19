@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class FlameCollisions : MonoBehaviour
 {
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -23,5 +24,13 @@ public class FlameCollisions : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player" | collision.gameObject.tag == "Projectile")
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

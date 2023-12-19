@@ -7,13 +7,13 @@ public class SoundManager : MonoBehaviour
     private static SoundManager instance = null;
 
     [SerializeField] private AudioClip playerJump;
-    [SerializeField] private AudioClip playerKilled;
+    [SerializeField] private AudioClip powerUp;
     [SerializeField] private AudioClip shootFlame;
     [SerializeField] private AudioClip chickenHurt;
 
     public static SoundManager Instance { get { return instance; } }
     public AudioClip PlayerJump { get { return playerJump; } }
-    public AudioClip PlayerKilled { get { return playerKilled; } }
+    public AudioClip PowerUp { get { return powerUp; } }
 
     public AudioClip ShootFlame { get => shootFlame; set => shootFlame = value; }
     public AudioClip ChickenHurt { get => chickenHurt; set => chickenHurt = value; }
@@ -27,5 +27,6 @@ public class SoundManager : MonoBehaviour
         }
         else if (instance != this)
             Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 }

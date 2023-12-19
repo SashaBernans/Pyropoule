@@ -13,6 +13,7 @@ TagManager:
   - TextLives
   - TextScore
   - TextStaticScore
+  - Bucket
   layers:
   - Default
   - TransparentFX
@@ -52,6 +53,9 @@ TagManager:
     locked: 0
   - name: Platform
     uniqueID: 1495809171
+    locked: 0
+  - name: PowerUps
+    uniqueID: 3338031933
     locked: 0
   - name: Player
     uniqueID: 3347541259

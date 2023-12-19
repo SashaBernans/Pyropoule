@@ -69,8 +69,27 @@ public class PlatformGenerator : MonoBehaviour
                 {
                     GenerateEnemy(p);
                 }
+                else if (random == 2)
+                {
+                    SpawnBucket(p);
+                }
             }
             lastLongPlateformLayerY += UNITS_BETWEEN_LONG_PLATEFORM_LAYERS;
+        }
+    }
+
+    private void SpawnBucket(GameObject p)
+    {
+        GameObject bucket = assetRecycler.BucketPool.Find(p => !p.activeInHierarchy);
+        if (bucket != null)
+        {
+            bucket.transform.position = new Vector2(
+                p.transform.position.x + UNITS_BETWEEN_ADJACENT_BLOCKS,
+                p.transform.position.y + UNITS_BETWEEN_ADJACENT_BLOCKS);
+            bucket.SetActive(true);
+            /*bucket.transform.position = new Vector2(
+                p.transform.position.x + UNITS_BETWEEN_ADJACENT_BLOCKS,
+                p.transform.position.y + UNITS_BETWEEN_ADJACENT_BLOCKS);*/
         }
     }
 

@@ -76,6 +76,15 @@ public class GameManager : MonoBehaviour
         lives = maxLives;
     }
 
+    public void addLife()
+    {
+        if (lives < 5)
+        {
+            lives++;
+            playerLivesText.text = lives.ToString();
+        }  
+    }
+
     public void LooseLife()
     {
         lives--;

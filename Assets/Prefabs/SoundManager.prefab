@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939f4aa70ff68d9428f9eee5043d2eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerJump: {fileID: 0}
-  playerKilled: {fileID: 0}
+  playerJump: {fileID: 8300000, guid: 82d7b542166a37546a87c266cc580681, type: 3}
+  powerUp: {fileID: 8300000, guid: 55e6040cd9528fb48b359ed5ffb4c9ac, type: 3}
   shootFlame: {fileID: 8300000, guid: f13192b51a181c045837a077a6e5c09c, type: 3}
   chickenHurt: {fileID: 8300000, guid: 6692180ac76d43045b4725cc4017470e, type: 3}
