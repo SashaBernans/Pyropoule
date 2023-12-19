@@ -5,8 +5,9 @@ using UnityEngine;
 public class TroupeauManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    private float speed = 1f;
+    [SerializeField] private float baseSpeed;
 
+    private float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class TroupeauManager : MonoBehaviour
         }
         if (distance < 7f)
         {
-            speed = 1f;
+            speed = baseSpeed;
         }
         transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
