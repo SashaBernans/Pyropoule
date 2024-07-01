@@ -9,7 +9,8 @@ public class PlatformGenerator : MonoBehaviour
     private const float MAX_X_FOR_BLOCK = 8.44f;
     private const float UNITS_BETWEEN_LONG_PLATEFORM_LAYERS = 2.1f;
     private const int MAX_BLOCKS_PER_LAYER = 12;
-    [SerializeField] private int pyropouleSpawnRatePercentage;
+    [SerializeField] private int pyropouleSpawnrate;
+    [SerializeField] private int turkeySpawnRate;
     [SerializeField] private int bucketSpawnRatePercentage;
     [SerializeField] private AssetRecycler assetRecycler;
 
@@ -65,9 +66,13 @@ public class PlatformGenerator : MonoBehaviour
             {
                 GameObject p = GenerateLongPlatform(Random.Range(1, 5));
                 PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
-                if (pyropouleSpawnRatePercentage >= Random.Range(0, 100))
+                if (pyropouleSpawnrate >= Random.Range(0, 100))
                 {
-                    GenerateEnemy(p);
+                    GenerateEnemy(p, assetRecycler.PyropoulePool.Find(p => !p.activeInHierarchy));
+                }
+                else if (turkeySpawnRate >= Random.Range(0, 100))
+                {
+                    GenerateEnemy(p, assetRecycler.TurkeyPool.Find(p => !p.activeInHierarchy));
                 }
                 else if (bucketSpawnRatePercentage >= Random.Range(0, 100))
                 {
@@ -145,15 +150,14 @@ public class PlatformGenerator : MonoBehaviour
         longPlatform.transform.position = newPosition;
     }
 
-    private void GenerateEnemy(GameObject platform)
+    private void GenerateEnemy(GameObject platform, GameObject enemy)
     {
-        GameObject pyropoule = assetRecycler.PyropoulePool.Find(p => !p.activeInHierarchy);
-        if (pyropoule!=null)
+        if (enemy!=null)
         {
-            pyropoule.SetActive(true);
-            pyropoule.transform.position = new Vector2(
+            enemy.transform.position = new Vector2(
                 platform.transform.position.x + UNITS_BETWEEN_ADJACENT_BLOCKS, 
                 platform.transform.position.y + UNITS_BETWEEN_ADJACENT_BLOCKS);
+            enemy.SetActive(true);
         }
     }
 }

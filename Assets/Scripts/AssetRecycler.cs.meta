@@ -3,7 +3,15 @@ guid: 1ca9e07a9ace12d40b1dbd816440a5f2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dirtBlockPrefab: {fileID: 487076400175547261, guid: fd3b524e9ca5eb149a876128882d3489, type: 3}
+  - waterBlockPrefab: {fileID: 7835370547096143546, guid: ceeb336a5abe7c348bb134c70b6f56ca, type: 3}
+  - pyropouleProjectilePrefab: {fileID: 1579487035013278943, guid: ba1cb1919d512a64c97bb74e6daac4b2, type: 3}
+  - playerProjectilePrefab: {fileID: 4683705035395039635, guid: 9acecd6f0407c9446a73ca7fcd856441, type: 3}
+  - longPlatformPrefab: {fileID: 7854950846500090554, guid: 158f76a5ed7c28c4397968493f1937a8, type: 3}
+  - pyropoulePrefab: {fileID: 7776874323900720596, guid: 2baf887f033838946ae687460e884906, type: 3}
+  - turkeyPrefab: {fileID: 1845589450158782137, guid: d6b9c3a2b334102498f575e7c2e0bf4a, type: 3}
+  - bucketPrefab: {fileID: 6653842488780184572, guid: 666d87fb7f7ca62468b90bb7c12cab15, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

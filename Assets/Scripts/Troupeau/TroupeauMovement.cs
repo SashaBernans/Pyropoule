@@ -55,5 +55,9 @@ public class TroupeauManager : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
         }
+        else if (collision.tag == "Laser")
+        {
+            collision.gameObject.SetActive(false);
+        }
     }
 }

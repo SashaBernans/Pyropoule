@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66d197468444ee46953593ca936f104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pyropouleSpawnRatePercentage: 20
-  bucketSpawnRatePercentage: 0
+  pyropouleSpawnrate: 20
+  turkeySpawnRate: 20
+  bucketSpawnRatePercentage: 10
   assetRecycler: {fileID: 0}

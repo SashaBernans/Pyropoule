@@ -43,6 +43,10 @@ public class PlayerContacts : MonoBehaviour
             gameManager.addLife();
             audioSource.PlayOneShot(SoundManager.Instance.PowerUp);
         }
+        if (collision.gameObject.tag == "Laser")
+        {
+            print("player collision");
+        }
     }
 
     IEnumerator Flash()
