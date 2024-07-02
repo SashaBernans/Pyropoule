@@ -35,6 +35,14 @@ public class Turkey : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     //Disable laser when turkey dies
     private void OnDisable()
     {

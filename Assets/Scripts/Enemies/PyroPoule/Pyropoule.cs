@@ -43,6 +43,14 @@ public class Pyropoule : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     IEnumerator ShootDelay()
     {
         yield return new WaitForSeconds(fireRate);
