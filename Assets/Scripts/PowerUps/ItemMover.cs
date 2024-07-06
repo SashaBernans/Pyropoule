@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BucketMover : MonoBehaviour
+public class ItemMover : MonoBehaviour
 {
     private const float MIN_OFFSET = 0f;
     private const float MAX_OFFSET = 20f;
@@ -24,10 +24,10 @@ public class BucketMover : MonoBehaviour
 
     void Update()
     {
-        MoveBucket();
+        MoveItem();
     }
 
-    private void MoveBucket()
+    private void MoveItem()
     {
         offSet += (Time.deltaTime * direction * BUCKET_SPEED);
 

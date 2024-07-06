@@ -15,8 +15,18 @@ public class WaterProjectileCollisions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (this.isActiveAndEnabled)
+        {
+            StartCoroutine(Deactivate());
+        }
     }
+
+    IEnumerator Deactivate()
+    {
+        yield return new WaitForSeconds(2f);
+        gameObject.SetActive(false);
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

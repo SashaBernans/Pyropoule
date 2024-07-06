@@ -5,14 +5,22 @@ using UnityEngine;
 public class ProjectileMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
-    private Vector3 target;
+    private Vector2 direction;
+    private Rigidbody2D rb;
 
-    public Vector2 Target { get => target; set => target = value; }
+    public Vector2 Direction
+    {
+        get => direction; set
+        {
+            Vector2 position = new Vector2(transform.position.x, transform.position.y);
+            this.direction = (value - position).normalized;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = this.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -23,7 +31,6 @@ public class ProjectileMovement : MonoBehaviour
 
     private void Movement()
     {
-        Vector3 direction = (target - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
+        rb.velocity = direction * speed;
     }
 }
