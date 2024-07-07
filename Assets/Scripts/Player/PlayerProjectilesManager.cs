@@ -28,8 +28,8 @@ public class PlayerProjectilesManager : MonoBehaviour
                 if (canFire == true)
                 {
                     StartCoroutine(Firerate());
-                    Vector3 mouseScreenPosition = Input.mousePosition;
-                    Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+                    Vector2 mouseScreenPosition = Input.mousePosition;
+                    Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
                     ShootProjectile(mouseWorldPosition);
                     canFire = false;
                 }
@@ -43,7 +43,7 @@ public class PlayerProjectilesManager : MonoBehaviour
         this.canFire = true;
     }
 
-    private void ShootProjectile(Vector3 target)
+    private void ShootProjectile(Vector2 target)
     {
         // Trouver projectile inactif dans la liste
         GameObject newProjectile = assetRecycler.PlayerProjectilePool.Find(p => !p.activeInHierarchy);
@@ -52,10 +52,11 @@ public class PlayerProjectilesManager : MonoBehaviour
         {
             newProjectile.SetActive(true);
             newProjectile.transform.position = this.transform.position;
-            newProjectile.GetComponent<ProjectileMovement>().Direction = target;
+            newProjectile.GetComponent<ProjectileMovement>().Target = target;
+            newProjectile.GetComponent<ProjectileMovement>().ManageRotation();
 
-            /*
-            // Le sprite de base est pas dans le bon sens donc on fait une rotation
+
+            /*// Le sprite de base est pas dans le bon sens donc on fait une rotation
             newProjectile.transform.rotation = Quaternion.Euler(0, 0, 90f);
 
             Rigidbody2D projectileRb = newProjectile.GetComponent<Rigidbody2D>();

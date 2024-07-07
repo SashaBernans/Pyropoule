@@ -63,7 +63,7 @@ public class Pyropoule : MonoBehaviour
         projectile.SetActive(true);
         projectile.transform.position = transform.position;
         audioSource.PlayOneShot(SoundManager.Instance.ShootFlame);
-        projectile.GetComponent<ProjectileMovement>().Direction = target.transform.position;
+        projectile.GetComponent<ProjectileMovement>().Target = target.transform.position;
         canShoot = false;
     }
 

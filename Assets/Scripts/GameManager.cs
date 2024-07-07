@@ -65,9 +65,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        string keepScore = playerScoreText.text;
+        /*string keepScore = playerScoreText.text;
         StaticData.scoreText = keepScore;
-        SceneManager.LoadScene("SceneGameOver");
+        SceneManager.LoadScene("SceneGameOver");*/
     }
 
     public void StartGame()

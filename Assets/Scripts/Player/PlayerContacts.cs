@@ -45,7 +45,7 @@ public class PlayerContacts : MonoBehaviour
         }
         if (collision.gameObject.tag == "Laser")
         {
-            print("player collision");
+            //print("player collision");
         }
     }
 
