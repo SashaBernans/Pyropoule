@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class HealthBarManager : MonoBehaviour
 {
-    [SerializeField] private float health;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +18,10 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
-    public bool takeDamage(float damage)
+    public void takeDamage(float damagePercentage)
     {
-        this.health -= damage;
-        if (this.health <= 0)
-        {
-            return true;
-        }
-        return false;
+        Vector3 scale = transform.localScale;
+
+        transform.localScale = new Vector3(scale.x-(damagePercentage/100), scale.y,scale.z);
     }
 }

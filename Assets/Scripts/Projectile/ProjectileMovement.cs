@@ -27,6 +27,7 @@ public class ProjectileMovement : MonoBehaviour
             target = value;
             Vector2 position = new Vector2(transform.position.x, transform.position.y);
             this.direction = (value - position).normalized;
+            transform.rotation = new Quaternion(0, 0, 0, 0);
         }
     }
 
@@ -36,6 +37,7 @@ public class ProjectileMovement : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         cc = this.GetComponent<CapsuleCollider2D>();
         sr = this.GetComponent<SpriteRenderer>();
+        //transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
     // Update is called once per frame

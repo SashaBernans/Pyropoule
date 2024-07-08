@@ -52,8 +52,9 @@ public class PlayerProjectilesManager : MonoBehaviour
         {
             newProjectile.SetActive(true);
             newProjectile.transform.position = this.transform.position;
-            newProjectile.GetComponent<ProjectileMovement>().Target = target;
-            newProjectile.GetComponent<ProjectileMovement>().ManageRotation();
+            ProjectileMovement pm = newProjectile.GetComponent<ProjectileMovement>();
+            pm.Target = target;
+            pm.ManageRotation();
 
 
             /*// Le sprite de base est pas dans le bon sens donc on fait une rotation

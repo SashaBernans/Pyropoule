@@ -6,15 +6,19 @@ public class PlayerContacts : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Material flashMaterial;
+    [SerializeField] private HealthSystem healthSystem;
 
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     Material defaultMaterial;
 
+    private bool canBeHit = true;
+
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.Instance;
+        healthSystem = HealthSystem.Instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultMaterial = spriteRenderer.material;
         audioSource = GetComponent<AudioSource>();
@@ -30,9 +34,9 @@ public class PlayerContacts : MonoBehaviour
     {
         if (collision.gameObject.tag == "Flame")
         {
-            gameManager.LooseLife();
             audioSource.PlayOneShot(SoundManager.Instance.ChickenHurt);
             StartCoroutine(Flash());
+            healthSystem.TakeDamage(10);
         }
     }
 
@@ -40,12 +44,19 @@ public class PlayerContacts : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bucket")
         {
-            gameManager.addLife();
+            healthSystem.HealDamage(50);
             audioSource.PlayOneShot(SoundManager.Instance.PowerUp);
         }
         if (collision.gameObject.tag == "Laser")
         {
-            //print("player collision");
+            if (canBeHit)
+            {
+                audioSource.PlayOneShot(SoundManager.Instance.ChickenHurt);
+                StartCoroutine(Flash());
+                healthSystem.TakeDamage(10);
+                canBeHit = false;
+                StartCoroutine(ManageLaserHits());
+            }
         }
     }
 
@@ -58,5 +69,11 @@ public class PlayerContacts : MonoBehaviour
         spriteRenderer.material = flashMaterial;
         yield return new WaitForSeconds(0.125f);
         spriteRenderer.material = defaultMaterial;
+    }
+
+    IEnumerator ManageLaserHits()
+    {
+        yield return new WaitForSeconds(0.3f);
+        canBeHit = true;
     }
 }

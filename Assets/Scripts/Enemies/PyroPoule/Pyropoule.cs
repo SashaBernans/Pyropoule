@@ -7,6 +7,7 @@ public class Pyropoule : MonoBehaviour
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float fireRate;
 
+    private HealthBarManager healthBar;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     private bool canShoot;
@@ -16,6 +17,7 @@ public class Pyropoule : MonoBehaviour
         assetRecycler = AssetRecycler.Instance;
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        healthBar = GetComponentInChildren<HealthBarManager>();
         canShoot = true;
     }
 
@@ -47,7 +49,8 @@ public class Pyropoule : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            gameObject.SetActive(false);
+            healthBar.takeDamage(10);
+            //gameObject.SetActive(false);
         }
     }
 
