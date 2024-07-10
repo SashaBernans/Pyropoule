@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class LaserBehaviour : MonoBehaviour
 {
+    [SerializeField] private int damage;
     public float rotationSpeed = 90f;
     private SpriteRenderer spriteRenderer;
     private Vector3 pivotPoint;
+    private bool canBeHit = true;
 
     // Start is called before the first frame update
     void Start()
@@ -26,4 +28,13 @@ public class LaserBehaviour : MonoBehaviour
         // Apply the rotation around the Z axis
         transform.RotateAround(transform.position, Vector3.forward, rotationThisFrame);
     }
+    /*
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            
+        }
+    }
+    */
 }

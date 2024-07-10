@@ -204,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assetRecycler: {fileID: 0}
   fireRate: 1
+  health: 100
 --- !u!82 &3536700548128964568
 AudioSource:
   m_ObjectHideFlags: 0

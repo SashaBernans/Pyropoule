@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FlameCollisions : MonoBehaviour
 {
+    [SerializeField] private int flameDamage;
     private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class FlameCollisions : MonoBehaviour
         if(collision.gameObject.tag == "Player" | collision.gameObject.tag == "Projectile")
         {
             gameObject.SetActive(false);
+            HealthSystem.Instance.TakeDamage(10);
         }
     }
 }

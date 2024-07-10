@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turkey : MonoBehaviour
+public class Turkey : MonoBehaviour, IDamageable
 {
     [SerializeField] private AssetRecycler assetRecycler;
 
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     private GameObject laser;
+    private HealthBarManager healthBar;
+    [SerializeField] private float health;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class Turkey : MonoBehaviour
         laser = assetRecycler.LaserPool.Find(p => !p.activeInHierarchy);
         laser.transform.position = transform.position;
         laser.SetActive(true);
+        healthBar = GetComponentInChildren<HealthBarManager>();
     }
     private void OnEnable()
     {
@@ -39,7 +42,7 @@ public class Turkey : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 
@@ -49,6 +52,16 @@ public class Turkey : MonoBehaviour
         if (laser != null)
         {
             laser.SetActive(false);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        healthBar.TakeDamage(damage / health * 100);
+        health -= damage;
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

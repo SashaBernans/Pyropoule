@@ -18,10 +18,10 @@ public class HealthBarManager : MonoBehaviour
         
     }
 
-    public void takeDamage(float damagePercentage)
+    public void TakeDamage(float damagePercentage)
     {
         Vector3 scale = transform.localScale;
 
-        transform.localScale = new Vector3(scale.x-(damagePercentage/100), scale.y,scale.z);
+        transform.localScale = new Vector3(scale.x - scale.x*(damagePercentage/100), scale.y, scale.z);
     }
 }

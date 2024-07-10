@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particalSystemPrefab: {fileID: 8663270377263006825, guid: 23f828956de7dcd4fa837b3f409c50ff, type: 3}
+  damage: 10
 --- !u!70 &-8663743376564881384
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

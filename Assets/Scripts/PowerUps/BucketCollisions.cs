@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BucketCollisions : MonoBehaviour
 {
+    [SerializeField] private float healValue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class BucketCollisions : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             gameObject.SetActive(false);
+            HealthSystem.Instance.HealDamage(healValue);
         }
     }
 }

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pyropoule : MonoBehaviour
+public class Pyropoule : MonoBehaviour, IDamageable
 {
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float fireRate;
+    [SerializeField] private float health;
 
     private HealthBarManager healthBar;
     private SpriteRenderer spriteRenderer;
@@ -49,7 +50,6 @@ public class Pyropoule : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            healthBar.takeDamage(10);
             //gameObject.SetActive(false);
         }
     }
@@ -81,6 +81,16 @@ public class Pyropoule : MonoBehaviour
         else if (dotProduct < 0)
         {
             spriteRenderer.flipX = true;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        healthBar.TakeDamage(damage / health * 100);
+        health -= damage;
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

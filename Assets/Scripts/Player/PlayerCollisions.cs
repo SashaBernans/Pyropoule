@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerContacts : MonoBehaviour
+public class PlayerCollisions : MonoBehaviour, IDamageable
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Material flashMaterial;
@@ -36,7 +36,6 @@ public class PlayerContacts : MonoBehaviour
         {
             audioSource.PlayOneShot(SoundManager.Instance.ChickenHurt);
             StartCoroutine(Flash());
-            healthSystem.TakeDamage(10);
         }
     }
 
@@ -44,7 +43,6 @@ public class PlayerContacts : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bucket")
         {
-            healthSystem.HealDamage(50);
             audioSource.PlayOneShot(SoundManager.Instance.PowerUp);
         }
         if (collision.gameObject.tag == "Laser")
@@ -52,8 +50,8 @@ public class PlayerContacts : MonoBehaviour
             if (canBeHit)
             {
                 audioSource.PlayOneShot(SoundManager.Instance.ChickenHurt);
+                TakeDamage(10);
                 StartCoroutine(Flash());
-                healthSystem.TakeDamage(10);
                 canBeHit = false;
                 StartCoroutine(ManageLaserHits());
             }
@@ -75,5 +73,10 @@ public class PlayerContacts : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         canBeHit = true;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        healthSystem.TakeDamage(damage);
     }
 }

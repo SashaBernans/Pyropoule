@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaterProjectileCollisions : MonoBehaviour
 {
     [SerializeField] private GameObject particalSystemPrefab;
+    [SerializeField] private int damage;
 
     // Start is called before the first frame update
     void Start()
@@ -33,5 +34,11 @@ public class WaterProjectileCollisions : MonoBehaviour
         GameObject newParticalSystem = Instantiate(particalSystemPrefab, transform.position, Quaternion.identity);
         newParticalSystem.transform.position = transform.position;
         gameObject.SetActive(false);
+
+        if (collision.gameObject.tag == "Pyropoule")
+        {
+            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            damageable.TakeDamage(damage);
+        }
     }
 }
