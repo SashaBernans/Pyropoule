@@ -22,8 +22,8 @@ public class BucketCollisions : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            gameObject.SetActive(false);
             HealthSystem.Instance.HealDamage(healValue);
+            gameObject.SetActive(false);
         }
     }
 }

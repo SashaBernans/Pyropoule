@@ -5,7 +5,7 @@ using UnityEngine;
 public class LaserBehaviour : MonoBehaviour
 {
     [SerializeField] private int damage;
-    public float rotationSpeed = 90f;
+    [SerializeField] private float speed;
     private SpriteRenderer spriteRenderer;
     private Vector3 pivotPoint;
     private bool canBeHit = true;
@@ -20,7 +20,7 @@ public class LaserBehaviour : MonoBehaviour
     void Update()
     {
         // Calculate the rotation for this frame
-        float rotationThisFrame = rotationSpeed * Time.deltaTime;
+        float rotationThisFrame = speed * Time.deltaTime;
 
         //Calculate the pivot point
         //Vector3 pivotPoint = spriteRenderer.bounds.max;

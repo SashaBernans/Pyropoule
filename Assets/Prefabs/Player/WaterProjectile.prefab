@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5263983896415024741}
   - component: {fileID: -8663743376564881384}
   - component: {fileID: 4798008947590726876}
-  m_Layer: 7
+  m_Layer: 4
   m_Name: WaterProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}

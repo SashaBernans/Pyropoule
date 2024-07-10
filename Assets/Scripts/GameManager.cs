@@ -9,12 +9,15 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
     public static GameManager Instance { get { return instance; } }
 
+    public float secondsSinceStart = 0;
+
     private int actualLevel = 0;
 
     private const int maxLives = 3;
     private int lives = maxLives;
     private float score = 0f;
     private static float staticScore;
+    private bool gameIsStarted = false;
 
     Text playerScoreText;
     Text playerLivesText;
@@ -38,7 +41,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        secondsSinceStart = Time.deltaTime + secondsSinceStart;
+        print(secondsSinceStart);
     }
 
     public void LinkText(Text textToLink)
@@ -73,6 +77,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Scene1");
+        secondsSinceStart = 0;
         lives = maxLives;
     }
 

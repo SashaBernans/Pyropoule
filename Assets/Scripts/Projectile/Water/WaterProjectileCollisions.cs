@@ -41,4 +41,16 @@ public class WaterProjectileCollisions : MonoBehaviour
             damageable.TakeDamage(damage);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Pyropoule")
+        {
+            GameObject newParticalSystem = Instantiate(particalSystemPrefab, transform.position, Quaternion.identity);
+            newParticalSystem.transform.position = transform.position;
+            gameObject.SetActive(false);
+            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            damageable.TakeDamage(damage);
+        }
+    }
 }
