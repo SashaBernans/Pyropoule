@@ -15,6 +15,9 @@ TagManager:
   - TextStaticScore
   - Bucket
   - Laser
+  - ManaSprite
+  - HealthSprite
+  - Egg
   layers:
   - Default
   - TransparentFX

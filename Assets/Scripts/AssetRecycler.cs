@@ -16,6 +16,7 @@ public class AssetRecycler : MonoBehaviour
     public List<GameObject> TurkeyPool { get => turkeyPool; set => turkeyPool = value; }
     public List<GameObject> BucketPool { get => bucketPool; set => bucketPool = value; }
     public List<GameObject> LaserPool { get => laserPool; set => laserPool = value; }
+    public List<GameObject> EggPool { get => eggPool; set => eggPool = value; }
 
     [SerializeField] private GameObject dirtBlockPrefab;
     [SerializeField] private GameObject waterBlockPrefab;
@@ -26,26 +27,36 @@ public class AssetRecycler : MonoBehaviour
     [SerializeField] private GameObject pyropoulePrefab;
     [SerializeField] private GameObject turkeyPrefab;
     [SerializeField] private GameObject bucketPrefab;
+    [SerializeField] private GameObject eggPrefab;
 
+    //Plateforms
     private List<GameObject> dirtBlockPool;
     private List<GameObject> waterBlockPool;
+    private List<GameObject> longPlatformPool;
+
+    //Projectiles
     private List<GameObject> pyropouleProjectilePool;
     private List<GameObject> playerProjectilePool;
-    private List<GameObject> longPlatformPool;
-    private List<GameObject> pyropoulePool;
+    private List<GameObject> laserPool;
+
+    //PowerUps
     private List<GameObject> bucketPool;
+    private List<GameObject> eggPool;
+
+    //enemies
+    private List<GameObject> pyropoulePool;
     private List<GameObject> turkeyPool;
 
-    private static int pyropouleProjectilePoolSize = 100;
+    private static int pyropouleProjectilePoolSize = 1000;
     private static int playerProjectilePoolSize = 10;
-    private static int pyropoulePoolSize = 10;
+    private static int pyropoulePoolSize = 100;
     private static int turkeyPoolSize = 10;
     private static int bucketPoolSize = 10;
-    private List<GameObject> laserPool;
     private const int laserPoolSize = 30;
     private const int DIRT_BLOCK_POOL_SIZE = 64;
     private const int WATER_BLOCK_POOL_SIZE = 64;
     private const int LONG_PLATFORM_POOL_SIZE = 128;
+    private const int EGG_POOL_SIZE = 3;
 
     void Awake()
     {
@@ -66,6 +77,7 @@ public class AssetRecycler : MonoBehaviour
         turkeyPool = InstanciateGameObjectPool(turkeyPrefab, turkeyPoolSize);
         bucketPool = InstanciateGameObjectPool(bucketPrefab, bucketPoolSize);
         laserPool = InstanciateGameObjectPool(laserPrefab, laserPoolSize);
+        eggPool = InstanciateGameObjectPool(eggPrefab, EGG_POOL_SIZE);
     }
 
     // Start is called before the first frame update
@@ -92,5 +104,17 @@ public class AssetRecycler : MonoBehaviour
             pool.Add(newGameObject);
         }
         return pool;
+    }
+
+    public List<GameObject> getActiveGameObjects(int nbGameObjects, List<GameObject> list)
+    {
+        List<GameObject> allActiveGameObjects = list.FindAll(p => !p.activeInHierarchy);
+        List<GameObject> someActivegameObjects = new(nbGameObjects);
+
+        for (int i = 0; i < someActivegameObjects.Capacity; i++)
+        {
+            someActivegameObjects.Add(allActiveGameObjects[i]);
+        }
+        return someActivegameObjects;
     }
 }

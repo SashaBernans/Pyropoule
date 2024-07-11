@@ -64,34 +64,24 @@ public class PlatformGenerator : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                GameObject p = GenerateLongPlatform(Random.Range(1, 5));
-                PlatformPlacing(p, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
+                GameObject longPlatform = GenerateLongPlatform(Random.Range(1, 5));
+                PlatformPlacing(longPlatform, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
                 if (pyropouleSpawnrate >= Random.Range(0, 100))
                 {
-                    GenerateEnemy(p, assetRecycler.PyropoulePool.Find(p => !p.activeInHierarchy));
+                    //addEntityToPlatform(p, assetRecycler.PyropoulePool.Find(p => !p.activeInHierarchy));
+
+                    addEntitiesToPlatform(longPlatform, assetRecycler.getActiveGameObjects(longPlatform.transform.childCount, assetRecycler.PyropoulePool));
                 }
                 else if (turkeySpawnRate >= Random.Range(0, 100))
                 {
-                    GenerateEnemy(p, assetRecycler.TurkeyPool.Find(p => !p.activeInHierarchy));
+                    addEntityToPlatform(longPlatform, assetRecycler.TurkeyPool.Find(p => !p.activeInHierarchy));
                 }
                 else if (bucketSpawnRatePercentage >= Random.Range(0, 100))
                 {
-                    SpawnBucket(p);
+                    addEntityToPlatform(longPlatform,assetRecycler.BucketPool.Find(p => !p.activeInHierarchy));
                 }
             }
             lastLongPlateformLayerY += UNITS_BETWEEN_LONG_PLATEFORM_LAYERS;
-        }
-    }
-
-    private void SpawnBucket(GameObject p)
-    {
-        GameObject bucket = assetRecycler.BucketPool.Find(p => !p.activeInHierarchy);
-        if (bucket != null)
-        {
-            bucket.transform.position = new Vector2(
-                p.transform.position.x + UNITS_BETWEEN_ADJACENT_BLOCKS,
-                p.transform.position.y + UNITS_BETWEEN_ADJACENT_BLOCKS);
-            bucket.SetActive(true);
         }
     }
 
@@ -150,14 +140,30 @@ public class PlatformGenerator : MonoBehaviour
         longPlatform.transform.position = newPosition;
     }
 
-    private void GenerateEnemy(GameObject platform, GameObject enemy)
+    private void addEntityToPlatform(GameObject platform, GameObject entity)
     {
-        if (enemy!=null)
+        if (entity != null)
         {
-            enemy.transform.position = new Vector2(
-                platform.transform.position.x + UNITS_BETWEEN_ADJACENT_BLOCKS, 
+            entity.transform.position = new Vector2(
+                platform.transform.position.x + UNITS_BETWEEN_ADJACENT_BLOCKS,
                 platform.transform.position.y + UNITS_BETWEEN_ADJACENT_BLOCKS);
-            enemy.SetActive(true);
+            entity.SetActive(true);
+        }
+    }
+
+    private void addEntitiesToPlatform(GameObject platform, List<GameObject> entities)
+    {
+        Transform[] platformTransforms = platform.GetComponentsInChildren<Transform>();
+
+        for (int i = 0; i<entities.Count; i++)
+        {
+            if (entities[i] !=null)
+            {
+                entities[i].transform.position = new Vector2(
+                platformTransforms[i].position.x + UNITS_BETWEEN_ADJACENT_BLOCKS,
+                platformTransforms[i].position.y + UNITS_BETWEEN_ADJACENT_BLOCKS);
+                entities[i].SetActive(true);
+            }
         }
     }
 }

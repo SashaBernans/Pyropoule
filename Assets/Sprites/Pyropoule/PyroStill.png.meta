@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PyroStill_0: -4433287235390610947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

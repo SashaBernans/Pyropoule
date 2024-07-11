@@ -7,7 +7,6 @@ public class LaserBehaviour : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private float speed;
     private SpriteRenderer spriteRenderer;
-    private Vector3 pivotPoint;
     private bool canBeHit = true;
 
     // Start is called before the first frame update
@@ -19,15 +18,11 @@ public class LaserBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Calculate the rotation for this frame
         float rotationThisFrame = speed * Time.deltaTime;
 
-        //Calculate the pivot point
-        //Vector3 pivotPoint = spriteRenderer.bounds.max;
-
-        // Apply the rotation around the Z axis
         transform.RotateAround(transform.position, Vector3.forward, rotationThisFrame);
     }
+    
     /*
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         secondsSinceStart = Time.deltaTime + secondsSinceStart;
-        print(secondsSinceStart);
     }
 
     public void LinkText(Text textToLink)

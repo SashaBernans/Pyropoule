@@ -60,9 +60,9 @@ public class ProjectileMovement : MonoBehaviour
     {
         if (cc != null)
         {
-            print(cc.transform.position);
-            print(cc.size.x);
-            print(cc.size.y);
+            //print(cc.transform.position);
+            //print(cc.size.x);
+            //print(cc.size.y);
 
             float minX = transform.position.x - cc.size.x /2;
             float minY = transform.position.y - cc.size.y / 2;
@@ -81,7 +81,7 @@ public class ProjectileMovement : MonoBehaviour
                 (2 * distanceHeadTarget * distanceTailHead));
 
             float rotation = (float)((180 / System.Math.PI) * radRotation);
-            print(rotation);
+            //print(rotation);
             if (rotation >1 | rotation <-1)
             {
                 if (target.x > transform.position.x)
