@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public float secondsSinceStart = 0;
 
+    public float height = 0;
+
     private int actualLevel = 0;
 
     private const int maxLives = 3;
@@ -101,6 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScore(float score)
     {
+        height = score;
         playerScoreText.text = score.ToString();
     }
 }

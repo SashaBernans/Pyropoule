@@ -5,12 +5,13 @@ using UnityEngine;
 public class Turkey : MonoBehaviour, IDamageable
 {
     [SerializeField] private AssetRecycler assetRecycler;
+    [SerializeField] private float health;
 
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     private GameObject laser;
     private HealthBarManager healthBar;
-    [SerializeField] private float health;
+    private float maxHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -57,11 +58,16 @@ public class Turkey : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        healthBar.TakeDamage(damage / health * 100);
-        health -= damage;
-        if (health <= 0)
+        if (health - damage <= 0)
         {
             gameObject.SetActive(false);
+            health = maxHealth;
+            healthBar.HealToMax();
+        }
+        else
+        {
+            healthBar.TakeDamage(damage / health * 100);
+            health = health - damage;
         }
     }
 }

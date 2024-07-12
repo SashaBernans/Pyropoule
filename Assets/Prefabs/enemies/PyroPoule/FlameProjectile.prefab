@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ee06451bd84aa489b6004705e09cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flameDamage: 0
 --- !u!50 &6025023400041088160
 Rigidbody2D:
   serializedVersion: 4
@@ -773,7 +774,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 1
-    maxNumParticles: 10
+    maxNumParticles: 100
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,10 @@ public class Pyropoule : MonoBehaviour, IDamageable
 {
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float fireRate;
-    [SerializeField] private float health;
+    private float health;
 
+    private float maxHealth;
+    [SerializeField] private float baseHealth;
     private HealthBarManager healthBar;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
@@ -20,11 +23,32 @@ public class Pyropoule : MonoBehaviour, IDamageable
         spriteRenderer = GetComponent<SpriteRenderer>();
         healthBar = GetComponentInChildren<HealthBarManager>();
         canShoot = true;
+        health = baseHealth;
+        maxHealth = health;
     }
 
     private void OnEnable()
     {
         canShoot = true;
+        if (GameManager.Instance!=null)
+        {
+            if(healthBar != null)
+            {
+                healthBar.HealToMax();
+            }
+            HandleScaling();
+        }
+    }
+
+    private void HandleScaling()
+    {
+        if (GameManager.Instance.height > 20)
+        {
+            float multiplier = GameManager.Instance.height / 20;
+            maxHealth = multiplier * baseHealth;
+        }
+
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -78,11 +102,16 @@ public class Pyropoule : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        healthBar.TakeDamage(damage / health * 100);
-        health -= damage;
-        if (health <= 0)
+        if (health -damage <= 0)
         {
             gameObject.SetActive(false);
+            healthBar.HealToMax();
+            health = maxHealth;
+        }
+        else
+        {
+            healthBar.TakeDamage(damage / health * 100);
+            health = health - damage;
         }
     }
 }

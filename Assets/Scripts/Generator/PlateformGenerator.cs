@@ -70,7 +70,8 @@ public class PlatformGenerator : MonoBehaviour
                 {
                     //addEntityToPlatform(p, assetRecycler.PyropoulePool.Find(p => !p.activeInHierarchy));
 
-                    addEntitiesToPlatform(longPlatform, assetRecycler.getActiveGameObjects(longPlatform.transform.childCount, assetRecycler.PyropoulePool));
+                    //addEntitiesToPlatform(longPlatform, assetRecycler.getActiveGameObjects(longPlatform.transform.childCount, assetRecycler.PyropoulePool));
+                    addEntitiesToPlatform(longPlatform, assetRecycler.getActiveGameObjects(7, assetRecycler.PyropoulePool));
                 }
                 else if (turkeySpawnRate >= Random.Range(0, 100))
                 {
@@ -155,7 +156,7 @@ public class PlatformGenerator : MonoBehaviour
     {
         Transform[] platformTransforms = platform.GetComponentsInChildren<Transform>();
 
-        for (int i = 0; i<entities.Count; i++)
+        for (int i = 0; i<platform.transform.childCount; i++)
         {
             if (entities[i] !=null)
             {
