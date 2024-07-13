@@ -29,4 +29,12 @@ public class HealthBarManager : MonoBehaviour
     {
         transform.localScale = initialScale;
     }
+
+    private void OnDisable()
+    {
+        if (initialScale != new Vector3(0,0,0))
+        {
+            HealToMax();
+        }
+    }
 }

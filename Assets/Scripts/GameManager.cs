@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return instance; } }
 
     public float secondsSinceStart = 0;
-
     public float height = 0;
+    public float globalScaler = 20;
 
     private int actualLevel = 0;
 

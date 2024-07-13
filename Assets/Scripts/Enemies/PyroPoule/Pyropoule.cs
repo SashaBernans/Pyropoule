@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Pyropoule : MonoBehaviour, IDamageable
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float fireRate;
     private float health;
@@ -19,6 +20,7 @@ public class Pyropoule : MonoBehaviour, IDamageable
     void Start()
     {
         assetRecycler = AssetRecycler.Instance;
+        gameManager = GameManager.Instance;
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         healthBar = GetComponentInChildren<HealthBarManager>();
@@ -30,21 +32,17 @@ public class Pyropoule : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         canShoot = true;
-        if (GameManager.Instance!=null)
+        if (gameManager!=null)
         {
-            if(healthBar != null)
-            {
-                healthBar.HealToMax();
-            }
             HandleScaling();
         }
     }
 
     private void HandleScaling()
     {
-        if (GameManager.Instance.height > 20)
+        if (gameManager.height > gameManager.globalScaler)
         {
-            float multiplier = GameManager.Instance.height / 20;
+            float multiplier = gameManager.height / gameManager.globalScaler;
             maxHealth = multiplier * baseHealth;
         }
 
@@ -105,7 +103,6 @@ public class Pyropoule : MonoBehaviour, IDamageable
         if (health -damage <= 0)
         {
             gameObject.SetActive(false);
-            healthBar.HealToMax();
             health = maxHealth;
         }
         else
