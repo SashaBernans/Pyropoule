@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pyropoule : MonoBehaviour, IDamageable
+public class Pyropoule : MonoBehaviour, IDamageable, IScaleable
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float fireRate;
-    private float health;
-
-    private float maxHealth;
     [SerializeField] private float baseHealth;
+
+    private float health;
+    private float maxHealth;
     private HealthBarManager healthBar;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
@@ -32,21 +32,6 @@ public class Pyropoule : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         canShoot = true;
-        if (gameManager!=null)
-        {
-            HandleScaling();
-        }
-    }
-
-    private void HandleScaling()
-    {
-        if (gameManager.height > gameManager.globalScaler)
-        {
-            float multiplier = gameManager.height / gameManager.globalScaler;
-            maxHealth = multiplier * baseHealth;
-        }
-
-        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -110,5 +95,35 @@ public class Pyropoule : MonoBehaviour, IDamageable
             healthBar.TakeDamage(damage / health * 100);
             health = health - damage;
         }
+    }
+
+    public float getBaseHealth()
+    {
+        return baseHealth;
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
+
+    public float getMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public void setHealth(float health)
+    {
+        this.health = health;
+    }
+
+    public void multiplyMaxHealth(float multiplier)
+    {
+        maxHealth = multiplier * baseHealth;
+    }
+
+    public void healToMaxHealth()
+    {
+        health = maxHealth;
     }
 }

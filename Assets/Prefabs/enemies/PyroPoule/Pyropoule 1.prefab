@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9210686372745187602}
   - component: {fileID: 7599769038484215400}
   - component: {fileID: 3536700548128964568}
+  - component: {fileID: -7125034208300688556}
   m_Layer: 8
   m_Name: Pyropoule 1
   m_TagString: Pyropoule
@@ -202,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1a720f5dc8b454dbf77d0fd32d73c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   assetRecycler: {fileID: 0}
   fireRate: 1
   baseHealth: 10
@@ -301,6 +303,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7125034208300688556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813944760871292403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd08d6dcad4c244cb3c3321fb76932b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1001 &4401354389093782150
 PrefabInstance:
   m_ObjectHideFlags: 0

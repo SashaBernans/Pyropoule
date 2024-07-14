@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turkey : MonoBehaviour, IDamageable
+public class Turkey : MonoBehaviour, IDamageable, IScaleable
 {
     [SerializeField] private AssetRecycler assetRecycler;
-    [SerializeField] private float health;
+    [SerializeField] private float baseHealth;
 
+    private float health;
+    private float maxHealth;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     private GameObject laser;
     private HealthBarManager healthBar;
-    private float maxHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,8 @@ public class Turkey : MonoBehaviour, IDamageable
         laser.transform.position = transform.position;
         laser.SetActive(true);
         healthBar = GetComponentInChildren<HealthBarManager>();
+        health = baseHealth;
+        maxHealth = health;
     }
     private void OnEnable()
     {
@@ -62,12 +65,21 @@ public class Turkey : MonoBehaviour, IDamageable
         {
             gameObject.SetActive(false);
             health = maxHealth;
-            healthBar.HealToMax();
         }
         else
         {
             healthBar.TakeDamage(damage / health * 100);
             health = health - damage;
         }
+    }
+
+    public void multiplyMaxHealth(float multiplier)
+    {
+        maxHealth = multiplier * baseHealth;
+    }
+
+    public void healToMaxHealth()
+    {
+        health = maxHealth;
     }
 }

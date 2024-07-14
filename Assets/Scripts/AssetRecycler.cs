@@ -47,9 +47,9 @@ public class AssetRecycler : MonoBehaviour
     private List<GameObject> pyropoulePool;
     private List<GameObject> turkeyPool;
 
-    private static int pyropouleProjectilePoolSize = 1000;
+    private static int pyropouleProjectilePoolSize = 100;
     private static int playerProjectilePoolSize = 10;
-    private static int pyropoulePoolSize = 100;
+    private static int pyropoulePoolSize = 10;
     private static int turkeyPoolSize = 10;
     private static int bucketPoolSize = 10;
     private const int laserPoolSize = 30;
@@ -113,7 +113,10 @@ public class AssetRecycler : MonoBehaviour
 
         for (int i = 0; i < someActivegameObjects.Capacity; i++)
         {
-            someActivegameObjects.Add(allActiveGameObjects[i]);
+            if (i<allActiveGameObjects.Count)
+            {
+                someActivegameObjects.Add(allActiveGameObjects[i]);
+            }
         }
         return someActivegameObjects;
     }

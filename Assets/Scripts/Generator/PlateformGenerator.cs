@@ -69,9 +69,8 @@ public class PlatformGenerator : MonoBehaviour
                 if (pyropouleSpawnrate >= Random.Range(0, 100))
                 {
                     //addEntityToPlatform(p, assetRecycler.PyropoulePool.Find(p => !p.activeInHierarchy));
-
-                    //addEntitiesToPlatform(longPlatform, assetRecycler.getActiveGameObjects(longPlatform.transform.childCount, assetRecycler.PyropoulePool));
-                    addEntitiesToPlatform(longPlatform, assetRecycler.getActiveGameObjects(7, assetRecycler.PyropoulePool));
+                    List<GameObject> gameobjects = assetRecycler.getActiveGameObjects(7, assetRecycler.PyropoulePool);
+                    addEntitiesToPlatform(longPlatform, gameobjects);
                 }
                 else if (turkeySpawnRate >= Random.Range(0, 100))
                 {
@@ -158,7 +157,7 @@ public class PlatformGenerator : MonoBehaviour
 
         for (int i = 0; i<platform.transform.childCount; i++)
         {
-            if (entities[i] !=null)
+            if (i<entities.Count)
             {
                 entities[i].transform.position = new Vector2(
                 platformTransforms[i].position.x + UNITS_BETWEEN_ADJACENT_BLOCKS,
