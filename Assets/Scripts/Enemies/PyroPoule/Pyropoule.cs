@@ -5,28 +5,24 @@ using UnityEngine;
 
 public class Pyropoule : Enemy, IDamageable, IScaleable
 {
-    [SerializeField] private GameManager gameManager;
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float fireRate;
     [SerializeField] private float baseHealth;
 
-    private float health;
-    private float maxHealth;
-    private HealthBarManager healthBar;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     private bool canShoot;
+
+    public override float enemyBaseHealth => baseHealth;
+
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         assetRecycler = AssetRecycler.Instance;
-        gameManager = GameManager.Instance;
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        healthBar = GetComponentInChildren<HealthBarManager>();
         canShoot = true;
-        health = baseHealth;
-        maxHealth = health;
     }
 
     private void OnEnable()
@@ -81,49 +77,5 @@ public class Pyropoule : Enemy, IDamageable, IScaleable
         {
             spriteRenderer.flipX = true;
         }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        if (health -damage <= 0)
-        {
-            gameObject.SetActive(false);
-            health = maxHealth;
-        }
-        else
-        {
-            healthBar.TakeDamage(damage / health * 100);
-            health = health - damage;
-        }
-    }
-
-    public float getBaseHealth()
-    {
-        return baseHealth;
-    }
-
-    public float getHealth()
-    {
-        return health;
-    }
-
-    public float getMaxHealth()
-    {
-        return maxHealth;
-    }
-
-    public void setHealth(float health)
-    {
-        this.health = health;
-    }
-
-    public void multiplyMaxHealth(float multiplier)
-    {
-        maxHealth = multiplier * baseHealth;
-    }
-
-    public void healToMaxHealth()
-    {
-        health = maxHealth;
     }
 }
