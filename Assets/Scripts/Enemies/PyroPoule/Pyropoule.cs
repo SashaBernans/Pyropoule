@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pyropoule : MonoBehaviour, IDamageable, IScaleable
+public class Pyropoule : Enemy, IDamageable, IScaleable
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private AssetRecycler assetRecycler;

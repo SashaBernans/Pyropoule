@@ -27,7 +27,7 @@ public class ProjectileMovement : MonoBehaviour
             target = value;
             Vector2 position = new Vector2(transform.position.x, transform.position.y);
             this.direction = (value - position).normalized;
-            transform.rotation = new Quaternion(0, 0, 0, 0);
+            //transform.rotation = new Quaternion(0, 0, 0, 0);
         }
     }
 
@@ -49,6 +49,11 @@ public class ProjectileMovement : MonoBehaviour
     private void Movement()
     {
         rb.velocity = direction * speed;
+    }
+
+    private void OnEnable()
+    {
+        
     }
 
     private void OnDisable()

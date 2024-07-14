@@ -56,7 +56,6 @@ public class PlayerProjectilesManager : MonoBehaviour
             pm.Target = target;
             pm.ManageRotation();
 
-
             /*// Le sprite de base est pas dans le bon sens donc on fait une rotation
             newProjectile.transform.rotation = Quaternion.Euler(0, 0, 90f);
 
