@@ -43,13 +43,18 @@ public class TroupeauManager : MonoBehaviour
             }
             collision.gameObject.SetActive(false);
         }
-        else if (collision.tag == "Pyropoule")
-        {
-            collision.gameObject.SetActive(false);
-        }
         else if (collision.tag == "Player")
         {
             GameManager.Instance.GameOver();
+        }
+        else
+        {
+            collision.gameObject.SetActive(false);
+        }
+        /*
+        else if (collision.tag == "Pyropoule")
+        {
+            collision.gameObject.SetActive(false);
         }
         else if (collision.tag == "Bucket")
         {
@@ -58,6 +63,6 @@ public class TroupeauManager : MonoBehaviour
         else if (collision.tag == "Laser")
         {
             collision.gameObject.SetActive(false);
-        }
+        }*/
     }
 }

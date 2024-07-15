@@ -16,7 +16,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable,IScaleable
     virtual public void Start()
     {
         damagePopUp = GetComponentInChildren<PopUpManager>();
-        damagePopUp.gameObject.SetActive(false);
+        //damagePopUp.gameObject.SetActive(false);
         healthBar = GetComponentInChildren<HealthBarManager>();
         health = enemyBaseHealth;
         maxHealth = health;
@@ -50,5 +50,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable,IScaleable
             healthBar.TakeDamage(damage / health * 100);
             health = health - damage;
         }
+        damagePopUp.popUp(damage);
     }
 }
