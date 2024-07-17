@@ -6,7 +6,10 @@ using UnityEngine;
 public class PopUpManager : MonoBehaviour
 {
     private Animator animator;
-    private TextMeshPro text; 
+    private TextMeshPro text;
+
+    private const string POP_UP_STATE = "PopUp";
+    private const string IDLE_STATE = "Idle";
 
     // Start is called before the first frame update
     void Start()
@@ -21,10 +24,20 @@ public class PopUpManager : MonoBehaviour
         
     }
 
-    public void popUp(int damage)
+    public bool PopUp(int damage)
     {
-        text.SetText(damage.ToString());
-        animator.Play("PopUp");
+
+        //text.SetText("");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(POP_UP_STATE))
+        {
+            return false;
+        }
+        if (gameObject.activeSelf)
+        {
+            text.SetText(damage.ToString());
+            animator.Play(POP_UP_STATE);
+        }
+        return true;
     }
 
     //Called in animation 

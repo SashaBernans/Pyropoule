@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class Pyropoule : Enemy, IDamageable, IScaleable
 {
-    [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float fireRate;
     [SerializeField] private float baseHealth;
 
-    private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     private bool canShoot;
 
@@ -19,9 +17,7 @@ public class Pyropoule : Enemy, IDamageable, IScaleable
     public override void Start()
     {
         base.Start();
-        assetRecycler = AssetRecycler.Instance;
         audioSource = GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         canShoot = true;
     }
 

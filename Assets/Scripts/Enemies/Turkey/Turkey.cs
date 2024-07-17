@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Turkey : Enemy, IDamageable, IScaleable
 {
-    [SerializeField] private AssetRecycler assetRecycler;
+    //[SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float baseHealth;
 
     private GameObject laser;
@@ -15,8 +15,8 @@ public class Turkey : Enemy, IDamageable, IScaleable
     public override void Start()
     {
         base.Start();
-        assetRecycler = AssetRecycler.Instance;
-        laser = assetRecycler.LaserPool.Find(p => !p.activeInHierarchy);
+        //assetRecycler = AssetRecycler.Instance;
+        laser = base.assetRecycler.LaserPool.Find(p => !p.activeInHierarchy);
         laser.transform.position = transform.position;
         laser.SetActive(true);
     }

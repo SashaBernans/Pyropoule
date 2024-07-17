@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformGenerator : MonoBehaviour
+public class WorldGenerator : MonoBehaviour
 {
+    private static WorldGenerator instance = null;
+
     private const float UNITS_BETWEEN_ADJACENT_BLOCKS = 0.79f;
     private const float MIN_X_FOR_BLOCK = -8.44f;
     private const float MAX_X_FOR_BLOCK = 8.44f;
@@ -13,6 +15,11 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private int turkeySpawnRate;
     [SerializeField] private int bucketSpawnRatePercentage;
     [SerializeField] private AssetRecycler assetRecycler;
+    [SerializeField] private Collider2D playerForceField;
+
+    public static WorldGenerator Instance { get { return instance; } }
+
+    public Collider2D PlayerForceField { get => playerForceField; }
 
     private float lastLongPlateformLayerY = -4.4f;
 
@@ -21,6 +28,13 @@ public class PlatformGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
         assetRecycler = AssetRecycler.Instance;
         StartCoroutine(GenerateTerrainCoroutine());
     }

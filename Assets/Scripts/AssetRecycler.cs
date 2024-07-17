@@ -17,6 +17,7 @@ public class AssetRecycler : MonoBehaviour
     public List<GameObject> BucketPool { get => bucketPool; set => bucketPool = value; }
     public List<GameObject> LaserPool { get => laserPool; set => laserPool = value; }
     public List<GameObject> EggPool { get => eggPool; set => eggPool = value; }
+    public List<GameObject> ExpPool { get => expPool; set => expPool = value; }
 
     [SerializeField] private GameObject dirtBlockPrefab;
     [SerializeField] private GameObject waterBlockPrefab;
@@ -28,6 +29,7 @@ public class AssetRecycler : MonoBehaviour
     [SerializeField] private GameObject turkeyPrefab;
     [SerializeField] private GameObject bucketPrefab;
     [SerializeField] private GameObject eggPrefab;
+    [SerializeField] private GameObject expPrefab;
 
     //Plateforms
     private List<GameObject> dirtBlockPool;
@@ -42,6 +44,7 @@ public class AssetRecycler : MonoBehaviour
     //PowerUps
     private List<GameObject> bucketPool;
     private List<GameObject> eggPool;
+    private List<GameObject> expPool;
 
     //enemies
     private List<GameObject> pyropoulePool;
@@ -57,6 +60,7 @@ public class AssetRecycler : MonoBehaviour
     private const int WATER_BLOCK_POOL_SIZE = 64;
     private const int LONG_PLATFORM_POOL_SIZE = 128;
     private const int EGG_POOL_SIZE = 3;
+    private const int EXP_POOL_SIZE = 100;
 
     void Awake()
     {
@@ -78,6 +82,7 @@ public class AssetRecycler : MonoBehaviour
         bucketPool = InstanciateGameObjectPool(bucketPrefab, bucketPoolSize);
         laserPool = InstanciateGameObjectPool(laserPrefab, laserPoolSize);
         eggPool = InstanciateGameObjectPool(eggPrefab, EGG_POOL_SIZE);
+        expPool = InstanciateGameObjectPool(expPrefab, EXP_POOL_SIZE);
     }
 
     // Start is called before the first frame update

@@ -7,17 +7,28 @@ public abstract class Enemy : MonoBehaviour, IDamageable,IScaleable
     [SerializeField] public abstract float enemyBaseHealth { get; }
     public float health { get; set; }
     public float maxHealth { get; set; }
-    public HealthBarManager healthBar { get; set; }
+    public HealthBarManager healthBar;
 
-    public PopUpManager damagePopUp;
+    public PopUpParent damagePopUp;
+
+    public AssetRecycler assetRecycler;
+
+    public SpriteRenderer spriteRenderer;
+
+    public GameManager gameManager;
+
+    public Material defaultMaterial;
 
 
     // Start is called before the first frame update
     virtual public void Start()
     {
-        damagePopUp = GetComponentInChildren<PopUpManager>();
-        //damagePopUp.gameObject.SetActive(false);
+        assetRecycler = AssetRecycler.Instance;
+        damagePopUp = GetComponentInChildren<PopUpParent>();
         healthBar = GetComponentInChildren<HealthBarManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        gameManager = GameManager.Instance;
+        defaultMaterial = spriteRenderer.material;
         health = enemyBaseHealth;
         maxHealth = health;
     }
@@ -42,6 +53,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable,IScaleable
     {
         if (health - damage <= 0)
         {
+            releaseExp();
             gameObject.SetActive(false);
             health = maxHealth;
         }
@@ -49,7 +61,27 @@ public abstract class Enemy : MonoBehaviour, IDamageable,IScaleable
         {
             healthBar.TakeDamage(damage / health * 100);
             health = health - damage;
+            StartCoroutine(Flash());
         }
-        damagePopUp.popUp(damage);
+        damagePopUp.PopUp(damage);
+    }
+
+    private void releaseExp()
+    {
+        GameObject exp =assetRecycler.ExpPool.Find(p => !p.activeInHierarchy);
+        exp.transform.position = gameObject.transform.position;
+        exp.transform.position = new Vector2(exp.transform.position.x, exp.transform.position.y+0.5f);
+        exp.SetActive(true);
+    }
+
+    IEnumerator Flash()
+    {
+        spriteRenderer.material = gameManager.FlashMaterial;
+        yield return new WaitForSeconds(0.125f);
+        spriteRenderer.material = defaultMaterial;
+        yield return new WaitForSeconds(0.125f);
+        spriteRenderer.material = gameManager.FlashMaterial;
+        yield return new WaitForSeconds(0.125f);
+        spriteRenderer.material = defaultMaterial;
     }
 }
