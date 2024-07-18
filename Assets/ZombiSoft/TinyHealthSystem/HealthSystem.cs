@@ -25,8 +25,9 @@ public class HealthSystem : MonoBehaviour
 	public Image currentManaBar;
 	public Image currentManaGlobe;
 	public Text manaText;
-	public float manaPoint = 100f;
-	public float maxManaPoint = 100f;
+	public float exp = 0f;
+	public float maxExp = 100f;
+	private float lvl = 1;
 
 	//==============================================================
 	// Regenerate Health & Mana
@@ -77,12 +78,12 @@ public class HealthSystem : MonoBehaviour
 			if (GodMode)
 			{
 				HealDamage(maxHitPoint);
-				RestoreMana(maxManaPoint);
+				//GainExp(maxManaPoint);
 			}
 			else
 			{
 				HealDamage(regen);
-				RestoreMana(regen);				
+				//GainExp(regen);				
 			}
 
 			UpdateGraphics();
@@ -98,14 +99,14 @@ public class HealthSystem : MonoBehaviour
 	{
 		float ratio = hitPoint / maxHitPoint;
 		currentHealthBar.rectTransform.localPosition = new Vector3(currentHealthBar.rectTransform.rect.width * ratio - currentHealthBar.rectTransform.rect.width, 0, 0);
-		healthText.text = hitPoint.ToString ("0") + "/" + maxHitPoint.ToString ("0");
+		//healthText.text = hitPoint.ToString ("0") + "/" + maxHitPoint.ToString ("0");
 	}
 
 	private void UpdateHealthGlobe()
 	{
 		float ratio = hitPoint / maxHitPoint;
 		currentHealthGlobe.rectTransform.localPosition = new Vector3(0, currentHealthGlobe.rectTransform.rect.height * ratio - currentHealthGlobe.rectTransform.rect.height, 0);
-		healthText.text = hitPoint.ToString("0") + "/" + maxHitPoint.ToString("0");
+		//healthText.text = hitPoint.ToString("0") + "/" + maxHitPoint.ToString("0");
 	}
 
 	public void TakeDamage(float Damage)
@@ -115,7 +116,6 @@ public class HealthSystem : MonoBehaviour
 			hitPoint = 0;
 
 		UpdateGraphics();
-
 		//StartCoroutine(PlayerHurts());
 	}
 
@@ -139,38 +139,48 @@ public class HealthSystem : MonoBehaviour
 	//==============================================================
 	private void UpdateManaBar()
 	{
-		float ratio = manaPoint / maxManaPoint;
+		float ratio = exp / maxExp;
 		currentManaBar.rectTransform.localPosition = new Vector3(currentManaBar.rectTransform.rect.width * ratio - currentManaBar.rectTransform.rect.width, 0, 0);
-		manaText.text = manaPoint.ToString ("0") + "/" + maxManaPoint.ToString ("0");
+		//manaText.text = manaPoint.ToString ("0") + "/" + maxManaPoint.ToString ("0");
 	}
 
 	private void UpdateManaGlobe()
 	{
-		float ratio = manaPoint / maxManaPoint;
+		float ratio = exp / maxExp;
 		currentManaGlobe.rectTransform.localPosition = new Vector3(0, currentManaGlobe.rectTransform.rect.height * ratio - currentManaGlobe.rectTransform.rect.height, 0);
-		manaText.text = manaPoint.ToString("0") + "/" + maxManaPoint.ToString("0");
+		//manaText.text = manaPoint.ToString("0") + "/" + maxManaPoint.ToString("0");
 	}
 
-	public void UseMana(float Mana)
+	public void LooseExp(float Exp)
 	{
-		manaPoint -= Mana;
-		if (manaPoint < 1) // Mana is Zero!!
-			manaPoint = 0;
+		exp -= Exp;
+		if (exp < 1) // Mana is Zero!!
+			exp = 0;
 
 		UpdateGraphics();
 	}
 
-	public void RestoreMana(float Mana)
+	public void GainExp(float Exp)
 	{
-		manaPoint += Mana;
-		if (manaPoint > maxManaPoint) 
-			manaPoint = maxManaPoint;
+		exp += Exp;
+		if (exp > maxExp)
+        {
+			exp = 0;
+			SetMaxExp(50);
+			LevelUp();
+		}
 
 		UpdateGraphics();
 	}
-	public void SetMaxMana(float max)
+
+	private void LevelUp()
+    {
+		lvl += 1;
+		manaText.text = "lvl " + lvl.ToString();
+    }
+	public void SetMaxExp(float max)
 	{
-		maxManaPoint += (int)(maxManaPoint * max / 100);
+		maxExp += (int)(maxExp * max / 100);
 		
 		UpdateGraphics();
 	}

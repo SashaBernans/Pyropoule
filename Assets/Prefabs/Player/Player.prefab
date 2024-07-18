@@ -479,6 +479,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForceField
       objectReference: {fileID: 0}
+    - target: {fileID: 1770911113936576750, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
+      propertyPath: m_Parameters.m_Shape
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770911113936576750, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
+      propertyPath: m_Parameters.m_DirectionCurveX.scalar
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7039904682446332730, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.23
@@ -518,6 +526,18 @@ PrefabInstance:
     - target: {fileID: 7039904682446332730, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459016632002191273, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5325758
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459016632002191273, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.024904668
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459016632002191273, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.06946662
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

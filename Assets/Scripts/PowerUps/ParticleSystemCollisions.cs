@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class ForceField : MonoBehaviour
 {
+    private HealthSystem playerExp;
     private ParticleSystem ps;
     private List<ParticleSystem.Particle> particles = new List<ParticleSystem.Particle>();
-    private GameManager gameManager;
     private WorldGenerator platformGenerator;
     private SoundManager soundManager;
     private AudioSource audioSource;
+    [SerializeField] private float expValue;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerExp = HealthSystem.Instance;
         ps = GetComponent<ParticleSystem>();
-        gameManager = GameManager.Instance;
         soundManager = SoundManager.Instance;
         platformGenerator = WorldGenerator.Instance;
         ps.trigger.AddCollider(platformGenerator.PlayerForceField);
@@ -37,9 +38,10 @@ public class ForceField : MonoBehaviour
             ParticleSystem.Particle p = particles[i];
             audioSource.PlayOneShot(soundManager.ExpPickUp);
             p.remainingLifetime = 0;
-            Debug.Log("We colled");
             particles[i] = p;
+            playerExp.GainExp(expValue);
         }
         ps.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, particles);
+        ps.Stop();
     }
 }

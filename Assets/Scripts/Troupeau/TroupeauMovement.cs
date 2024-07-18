@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TroupeauManager : MonoBehaviour
 {
+    private const float MIN_DISTANCE_FROM_PLAYER = 15f;
     [SerializeField] private GameObject player;
     [SerializeField] private float baseSpeed;
 
@@ -19,7 +20,7 @@ public class TroupeauManager : MonoBehaviour
     void Update()
     {
         float distance = player.transform.position.y - this.transform.position.y;
-        if (distance > 7f)
+        if (distance > MIN_DISTANCE_FROM_PLAYER)
         {
             speed = 5f;
         }

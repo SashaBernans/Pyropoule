@@ -74,6 +74,14 @@ public abstract class Enemy : MonoBehaviour, IDamageable,IScaleable
         exp.SetActive(true);
     }
 
+    virtual public void OnDisable()
+    {
+        if (spriteRenderer !=null)
+        {
+            spriteRenderer.material = defaultMaterial;
+        }
+    }
+
     IEnumerator Flash()
     {
         spriteRenderer.material = gameManager.FlashMaterial;

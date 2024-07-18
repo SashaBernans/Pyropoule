@@ -32,7 +32,7 @@ public class FlameCollisions : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             
-            collision.gameObject.GetComponent<IDamageable>().TakeDamage(this.damage);
+            collision.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
             gameObject.SetActive(false);
         }
     }

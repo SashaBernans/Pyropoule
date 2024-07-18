@@ -23,7 +23,7 @@ public class PlayerProjectilesManager : MonoBehaviour
         if (!PauseManager.GameIsPaused)
         {
             // Devrait peut-être etre dans PlayerControls
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetMouseButton(0))
             {
                 if (canFire == true)
                 {

@@ -36,8 +36,9 @@ public class Turkey : Enemy, IDamageable, IScaleable
     }
 
     //Disable laser when turkey dies
-    private void OnDisable()
+    override public void OnDisable()
     {
+        base.OnDisable();
         if (laser != null)
         {
             laser.SetActive(false);
