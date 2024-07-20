@@ -12,12 +12,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthSystem : MonoBehaviour
+public class HealthSystem : MonoBehaviour, IUpgradeable
 {
 	public static HealthSystem Instance;
 
 	public Image currentHealthBar;
 	public Image currentHealthGlobe;
+	public PlayerUpgradesManager playerUpgradesManager;
 	public Text healthText;
 	public float hitPoint = 100f;
 	public float maxHitPoint = 100f;
@@ -177,6 +178,7 @@ public class HealthSystem : MonoBehaviour
     {
 		lvl += 1;
 		manaText.text = "lvl " + lvl.ToString();
+		PanelManager.Instance.SetUpText(playerUpgradesManager.Upgradeables);
     }
 	public void SetMaxExp(float max)
 	{
@@ -224,4 +226,14 @@ public class HealthSystem : MonoBehaviour
 
 		yield return null;
 	}
+
+    public void Upgrade()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string GetUpgradeText()
+    {
+        throw new System.NotImplementedException();
+    }
 }
