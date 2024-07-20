@@ -8,15 +8,19 @@ public class Orb : MonoBehaviour, IUpgradeable
     private PlayerUpgradesManager playerUpgradesManager;
     [SerializeField] private float speed;
     private Vector3 playerPosition;
+    private int level = 1;
+
+    private string upgradeText = "Upgrade orb speed by 10%";
+    private string upgradeTite = "Orb level ";
 
     public string GetUpgradeText()
     {
-        throw new System.NotImplementedException();
+        return upgradeText;
     }
 
     public void Upgrade()
     {
-        throw new System.NotImplementedException();
+        print("ORB UPGRADEDDDDDDDD");
     }
 
     // Start is called before the first frame update
@@ -37,5 +41,10 @@ public class Orb : MonoBehaviour, IUpgradeable
 
         // Apply the rotation around the Z axis
         transform.RotateAround(transform.parent.transform.position, Vector3.forward, rotationThisFrame);
+    }
+
+    public string GetUpgradeTitle()
+    {
+        return upgradeTite + level.ToString();
     }
 }

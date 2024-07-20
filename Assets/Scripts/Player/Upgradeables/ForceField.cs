@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class ForceField : MonoBehaviour, IUpgradeable
 {
+
+    private int level = 1;
+    private string upgradeTitle = "Vaccuum level ";
+    private string upgradeText = "Increase pick up range by 20%";
     public string GetUpgradeText()
     {
-        throw new System.NotImplementedException();
+        return upgradeText;
+    }
+
+    public string GetUpgradeTitle()
+    {
+        return upgradeTitle + level.ToString();
     }
 
     public void Upgrade()
     {
-        throw new System.NotImplementedException();
+        print("upgrade pick up range");
     }
 
     // Start is called before the first frame update

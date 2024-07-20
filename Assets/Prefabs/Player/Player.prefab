@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 7
-  godMode: 0
+  godMode: 1
 --- !u!95 &2838693065585750253
 Animator:
   serializedVersion: 7

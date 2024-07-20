@@ -18,6 +18,7 @@ TagManager:
   - ManaSprite
   - HealthSprite
   - Egg
+  - OptionTitle
   layers:
   - Default
   - TransparentFX

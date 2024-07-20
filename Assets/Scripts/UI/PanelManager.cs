@@ -40,11 +40,49 @@ public class PanelManager : MonoBehaviour
         PauseManager.Instance.PauseForMenu();
         gameObject.SetActive(true);
         OptionText[] options = GetOptions();
-        foreach(OptionText option in options)
+
+        IUpgradeable[] upgrades = GetRandomUpgradeables(upgradeables, options.Length);
+
+        for (int i = 0; i<upgrades.Length; i++)
         {
-            
+            options[i].SetUpText(upgrades[i]);
         }
     }
+
+    public static IUpgradeable[] GetRandomUpgradeables(List<IUpgradeable> upgradeables, int numberOfUpgrades)
+    {
+        System.Random random = new System.Random();
+
+        if (upgradeables == null || upgradeables.Count == 0)
+        {
+            throw new ArgumentException("The upgradeables list cannot be null or empty.");
+        }
+
+        if (numberOfUpgrades <= 0)
+        {
+            throw new ArgumentException("The number of upgrades must be greater than zero.");
+        }
+
+        int upgradeCount = Math.Min(numberOfUpgrades, upgradeables.Count);
+        IUpgradeable[] selectedUpgradeables = new IUpgradeable[upgradeCount];
+        HashSet<int> selectedIndices = new HashSet<int>();
+
+        for (int i = 0; i < upgradeCount; i++)
+        {
+            int randomIndex;
+            do
+            {
+                randomIndex = random.Next(upgradeables.Count);
+            } while (selectedIndices.Contains(randomIndex));
+
+            selectedIndices.Add(randomIndex);
+            selectedUpgradeables[i] = upgradeables[randomIndex];
+        }
+
+        return selectedUpgradeables;
+    }
+
+
 
     public enum Upgrade
     {

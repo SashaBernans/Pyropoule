@@ -28,7 +28,14 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 	public Text manaText;
 	public float exp = 0f;
 	public float maxExp = 100f;
-	private float lvl = 1;
+	private float playerLevel = 1;
+
+	private bool upgradeIsRegen =true;
+	private const string UPDRAGE_MAX_HEALTH = "Increase maximum health by ";
+	private const string UPDRAGE_HEAlTH_REGEN = "Increase health regeneration by 0.5 hitpoints per second";
+	private string upgradeTitle = "Health";
+	private int upgradeHealthPercentage = 10;
+
 
 	//==============================================================
 	// Regenerate Health & Mana
@@ -40,10 +47,10 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 
 	public bool GodMode;
 
-	//==============================================================
-	// Awake
-	//==============================================================
-	void Awake()
+    //==============================================================
+    // Awake
+    //==============================================================
+    void Awake()
 	{
 		Instance = this;
 	}
@@ -100,14 +107,14 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 	{
 		float ratio = hitPoint / maxHitPoint;
 		currentHealthBar.rectTransform.localPosition = new Vector3(currentHealthBar.rectTransform.rect.width * ratio - currentHealthBar.rectTransform.rect.width, 0, 0);
-		//healthText.text = hitPoint.ToString ("0") + "/" + maxHitPoint.ToString ("0");
+		healthText.text = hitPoint.ToString ("0") + "/" + maxHitPoint.ToString ("0");
 	}
 
 	private void UpdateHealthGlobe()
 	{
 		float ratio = hitPoint / maxHitPoint;
 		currentHealthGlobe.rectTransform.localPosition = new Vector3(0, currentHealthGlobe.rectTransform.rect.height * ratio - currentHealthGlobe.rectTransform.rect.height, 0);
-		//healthText.text = hitPoint.ToString("0") + "/" + maxHitPoint.ToString("0");
+		healthText.text = hitPoint.ToString("0") + "/" + maxHitPoint.ToString("0");
 	}
 
 	public void TakeDamage(float Damage)
@@ -176,8 +183,8 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 
 	private void LevelUp()
     {
-		lvl += 1;
-		manaText.text = "lvl " + lvl.ToString();
+		playerLevel += 1;
+		manaText.text = "lvl " + playerLevel.ToString();
 		PanelManager.Instance.SetUpText(playerUpgradesManager.Upgradeables);
     }
 	public void SetMaxExp(float max)
@@ -195,7 +202,7 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 		UpdateHealthBar();
 		UpdateHealthGlobe();
 		UpdateManaBar();
-		UpdateManaGlobe();
+		//UpdateManaGlobe();
 	}
 
 	//==============================================================
@@ -229,11 +236,34 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 
     public void Upgrade()
     {
-        throw new System.NotImplementedException();
+        if (upgradeIsRegen)
+        {
+			regen += 0.5f;
+        }
+        else
+        {
+			SetMaxHealth(upgradeHealthPercentage);
+        }
+		print("upgrade health");
     }
 
     public string GetUpgradeText()
     {
-        throw new System.NotImplementedException();
+		float random = Random.Range(0,100);
+        if (random <50)
+        {
+			upgradeIsRegen = false;
+			return UPDRAGE_MAX_HEALTH + upgradeHealthPercentage.ToString()+ "%";
+		}
+        else
+        {
+			upgradeIsRegen = true;
+			return UPDRAGE_HEAlTH_REGEN;
+        }
+    }
+
+    public string GetUpgradeTitle()
+    {
+		return upgradeTitle;
     }
 }
