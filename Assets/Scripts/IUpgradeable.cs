@@ -2,5 +2,6 @@
 {
     public void Upgrade();
     public string GetUpgradeText();
-    string GetUpgradeTitle();
+    public string GetUpgradeTitle();
+    public bool isActivated();
 }

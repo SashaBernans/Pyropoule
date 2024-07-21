@@ -266,4 +266,9 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
     {
 		return upgradeTitle;
     }
+
+	public bool isActivated()
+	{
+		return true;
+	}
 }

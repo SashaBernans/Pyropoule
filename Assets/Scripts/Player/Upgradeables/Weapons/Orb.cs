@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Orb : MonoBehaviour, IUpgradeable
+public class Orb : Weapon, IUpgradeable
 {
     private SpriteRenderer spriteRenderer;
     private PlayerUpgradesManager playerUpgradesManager;
+
     [SerializeField] private float speed;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private int damage;
+
     private Vector3 playerPosition;
     private int level = 1;
 
     private string upgradeText = "Upgrade orb speed by 10%";
     private string upgradeTite = "Orb level ";
+
+    public override float ProjectileSpeed { get => speed; set => speed = value; }
+    public override float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
+    public override int Damage { get => damage; set => damage = value; }
 
     public string GetUpgradeText()
     {
@@ -46,5 +54,9 @@ public class Orb : MonoBehaviour, IUpgradeable
     public string GetUpgradeTitle()
     {
         return upgradeTite + level.ToString();
+    }
+    public bool isActivated()
+    {
+        return gameObject.activeSelf;
     }
 }

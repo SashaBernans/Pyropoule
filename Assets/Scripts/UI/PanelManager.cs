@@ -41,6 +41,7 @@ public class PanelManager : MonoBehaviour
         gameObject.SetActive(true);
         OptionText[] options = GetOptions();
 
+        ///// Later I will have to sort for only activated upgrades
         IUpgradeable[] upgrades = GetRandomUpgradeables(upgradeables, options.Length);
 
         for (int i = 0; i<upgrades.Length; i++)

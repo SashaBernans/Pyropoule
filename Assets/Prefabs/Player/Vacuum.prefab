@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8459016632002191273}
   - component: {fileID: 3067545662032325929}
   m_Layer: 9
-  m_Name: ForceField
+  m_Name: Vacuum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ ParticleSystemForceField:
   m_Parameters:
     m_Shape: 0
     m_StartRange: 0
-    m_EndRange: 2
+    m_EndRange: 1
     m_Length: 1
     m_GravityFocus: 0
     m_RotationRandomness: {x: 0, y: 0}

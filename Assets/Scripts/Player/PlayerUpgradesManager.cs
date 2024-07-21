@@ -1,10 +1,15 @@
+using Assets.Scripts.Player.Upgradeables;
+using Assets.Scripts.Player.Upgradeables.GlobalUpgrades;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerUpgradesManager : MonoBehaviour
 {
     private List<IUpgradeable> upgradeables = new List<IUpgradeable>();
+    private List<Weapon> weapons = new List<Weapon>();
 
     public List<IUpgradeable> Upgradeables { get => upgradeables;}
 
@@ -14,6 +19,9 @@ public class PlayerUpgradesManager : MonoBehaviour
         HealthSystem.Instance.playerUpgradesManager = this;
         upgradeables.Add(HealthSystem.Instance);
         AddUpgradeables(GetComponentsInChildren<IUpgradeable>());
+
+        weapons = GetWeapons(upgradeables);
+        AddGlobalUpgrades();
     }
 
     // Update is called once per frame
@@ -22,9 +30,16 @@ public class PlayerUpgradesManager : MonoBehaviour
         
     }
 
-    public void AddUpgradeable(IUpgradeable upgradeable)
+    private void AddGlobalUpgrades()
     {
-        upgradeables.Add(upgradeable);
+        ProjectileSpeedUpgrade projectileSpeedUpgrade = new ProjectileSpeedUpgrade(weapons);
+        upgradeables.Add(projectileSpeedUpgrade);
+        AreaUpgrade areaUpgrade = new AreaUpgrade(weapons);
+        upgradeables.Add(areaUpgrade);
+        AttackSpeedUpgrade attackSpeed = new AttackSpeedUpgrade(weapons);
+        upgradeables.Add(attackSpeed);
+        DamageUpgrade damageUpgrade = new DamageUpgrade(weapons);
+        upgradeables.Add(damageUpgrade);
     }
 
     public void AddUpgradeables(IUpgradeable[] upgradeables)
@@ -33,5 +48,18 @@ public class PlayerUpgradesManager : MonoBehaviour
         {
             this.upgradeables.Add(upgrade);
         }
+    }
+
+    private List<Weapon> GetWeapons(List<IUpgradeable> upgradeables)
+    {
+        if (upgradeables == null)
+        {
+            throw new ArgumentNullException(nameof(upgradeables));
+        }
+
+        // Use LINQ to filter the upgradeables list and return only those that are of type Weapon
+        List<Weapon> weapons = upgradeables.OfType<Weapon>().ToList();
+
+        return weapons;
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IDamageable,IScaleable
 {
-    [SerializeField] public abstract float enemyBaseHealth { get; }
-    public float health { get; set; }
+    public abstract float enemyBaseHealth { get; }
+    private float health;
     public float maxHealth { get; set; }
     public HealthBarManager healthBar;
 
