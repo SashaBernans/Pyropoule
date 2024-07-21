@@ -36,7 +36,7 @@ public abstract class Weapon : MonoBehaviour
         Damage += Damage * percent / 100;
     }
 
-    public void UpgradeArea(int percent)
+    virtual public void UpgradeArea(int percent)
     {
         Vector2 current = transform.localScale;
         Vector2 newScale = current+(current * percent/100);

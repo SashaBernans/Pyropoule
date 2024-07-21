@@ -22,6 +22,10 @@ public class PlayerUpgradesManager : MonoBehaviour
 
         weapons = GetWeapons(upgradeables);
         AddGlobalUpgrades();
+
+        PlayerBaseWeapon b = GetComponent<PlayerBaseWeapon>();
+        upgradeables.Add(b);
+        weapons.Add(b);
     }
 
     // Update is called once per frame

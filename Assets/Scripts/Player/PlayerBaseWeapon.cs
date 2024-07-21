@@ -3,19 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectilesManager : MonoBehaviour
+public class PlayerBaseWeapon : Weapon, IUpgradeable
 {
     [SerializeField] private float projectileSpeed;
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float firerate;
+    [SerializeField] private int damage;
 
-    private SpriteRenderer spriteRenderer;
     private bool canFire = true;
+
+    private const string UPGRADE_BASE_WEAPON = "Upgrade damage by 25%";
+    private const string UPGRADE_TITLE = "Spit level ";
+    private int level = 1;
+
+    public override float ProjectileSpeed { get => projectileSpeed; set => projectileSpeed = value; }
+    public override float AttackSpeed { get => firerate; set => firerate = value; }
+    public override int Damage { get => damage; set => damage = value; }
 
     void Start()
     {
         assetRecycler = AssetRecycler.Instance;
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -54,27 +61,40 @@ public class PlayerProjectilesManager : MonoBehaviour
             newProjectile.transform.position = this.transform.position;
             ProjectileMovement pm = newProjectile.GetComponent<ProjectileMovement>();
             pm.Target = target;
+            pm.Damage = damage;
             pm.ManageRotation();
+        }
+    }
 
-            /*// Le sprite de base est pas dans le bon sens donc on fait une rotation
-            newProjectile.transform.rotation = Quaternion.Euler(0, 0, 90f);
+    public void Upgrade()
+    {
+        level += 1;
+        base.UpgradeDamage(25);
+    }
 
-            Rigidbody2D projectileRb = newProjectile.GetComponent<Rigidbody2D>();
-            SpriteRenderer newProjectileSR = newProjectile.GetComponent<SpriteRenderer>();
-            
-            // Vérifie dans quel direction le projectile dois aller
-            if (spriteRenderer.flipX)
-            {
-                newProjectile.transform.position = new Vector3(transform.position.x - 0.5f, transform.position.y + 0.4f, transform.position.z);
-                newProjectileSR.flipY = true;
-                projectileRb.velocity = new Vector2(-projectileSpeed, 0);
-            }
-            else
-            {
-                newProjectile.transform.position = new Vector3(transform.position.x + 0.5f, transform.position.y + 0.4f, transform.position.z);
-                newProjectileSR.flipY = false;
-                projectileRb.velocity = new Vector2(projectileSpeed, 0);
-            }*/
+    public string GetUpgradeText()
+    {
+        return UPGRADE_BASE_WEAPON;
+    }
+
+    public string GetUpgradeTitle()
+    {
+        return UPGRADE_TITLE + level.ToString();
+    }
+
+    public bool isActivated()
+    {
+        return true;
+    }
+
+    public override void UpgradeArea(int percent)
+    {
+        List<GameObject> projectiles = assetRecycler.PlayerProjectilePool;
+        foreach (GameObject p in projectiles)
+        {
+            Vector2 current = p.transform.localScale;
+            Vector2 newScale = current + (current * percent / 100);
+            p.transform.localScale = newScale;
         }
     }
 }

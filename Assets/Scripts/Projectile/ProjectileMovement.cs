@@ -21,6 +21,8 @@ public class ProjectileMovement : MonoBehaviour
         }
     }
 
+    public int Damage { get; internal set; }
+
     // Start is called before the first frame update
     void Start()
     {
