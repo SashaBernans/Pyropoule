@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class OrbCollisions : MonoBehaviour
 {
-    Orb orb;
+    private Orbs parent;
     // Start is called before the first frame update
     void Start()
     {
-        orb = GetComponent<Orb>();
+        parent = GetComponentInParent<Orbs>();
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class OrbCollisions : MonoBehaviour
     {
         if (collision.gameObject.tag == "Pyropoule")
         {
-            collision.gameObject.GetComponent<IDamageable>().TakeDamage(orb.Damage);
+            collision.gameObject.GetComponent<IDamageable>().TakeDamage(parent.Damage);
         }
     }
 }

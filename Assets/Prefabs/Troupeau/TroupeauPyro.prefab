@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5702557493130402633}
   - component: {fileID: 2221168142985267836}
   - component: {fileID: 5493505413934541371}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: TroupeauPyro
   m_TagString: Untagged
   m_Icon: {fileID: 0}

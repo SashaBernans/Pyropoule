@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Player.Upgradeables.GlobalUpgrades
 {
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Player.Upgradeables.GlobalUpgrades
         private const string UPGRADE_ATTACK_SPEED = "Increase attack speed of all weapons by 8 %";
         private const string UPGRADE_TITLE = "Ninja level ";
         private int level = 1;
+        private Image icon;
 
         public AttackSpeedUpgrade(List<Weapon> weapons)
         {
@@ -38,6 +40,11 @@ namespace Assets.Scripts.Player.Upgradeables.GlobalUpgrades
         public bool isActivated()
         {
             return true;
+        }
+
+        public Image GetIcon()
+        {
+            return GameManager.Instance.AttackSpeedUpgradeIcon.GetComponent<Image>();
         }
     }
 }

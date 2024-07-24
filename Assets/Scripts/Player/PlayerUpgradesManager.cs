@@ -16,6 +16,7 @@ public class PlayerUpgradesManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         HealthSystem.Instance.playerUpgradesManager = this;
         upgradeables.Add(HealthSystem.Instance);
         AddUpgradeables(GetComponentsInChildren<IUpgradeable>());
@@ -26,12 +27,28 @@ public class PlayerUpgradesManager : MonoBehaviour
         PlayerBaseWeapon b = GetComponent<PlayerBaseWeapon>();
         upgradeables.Add(b);
         weapons.Add(b);
+        */
+
+        AddUpgradeToTest();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    //This is to test different weapons HACCKLKSK
+
+    private void AddUpgradeToTest()
+    {
+        /*Orbs orbs = GetComponentInChildren<Orbs>();
+        upgradeables.Add(orbs);*/
+
+        HealthSystem.Instance.playerUpgradesManager = this;
+
+        AttackSpeedUpgrade attackSpeed = new AttackSpeedUpgrade(weapons);
+        upgradeables.Add(attackSpeed);
     }
 
     private void AddGlobalUpgrades()

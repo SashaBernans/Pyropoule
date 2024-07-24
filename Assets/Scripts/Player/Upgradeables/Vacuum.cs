@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Vacuum : MonoBehaviour, IUpgradeable
 {
@@ -44,5 +45,10 @@ public class Vacuum : MonoBehaviour, IUpgradeable
     public bool isActivated()
     {
         return gameObject.activeSelf;
+    }
+
+    public Image GetIcon()
+    {
+        throw new System.NotImplementedException();
     }
 }

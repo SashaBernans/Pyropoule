@@ -33,7 +33,8 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 	private bool upgradeIsRegen =true;
 	private const string UPDRAGE_MAX_HEALTH = "Increase maximum health by ";
 	private const string UPDRAGE_HEAlTH_REGEN = "Increase health regeneration by 0.5 hitpoints per second";
-	private string upgradeTitle = "Health";
+    private const int PERCENT_EXP_INCREASE_PER_LEVEL = 10;
+    private string upgradeTitle = "Health";
 	private int upgradeHealthPercentage = 10;
 
 
@@ -174,7 +175,7 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 		if (exp > maxExp)
         {
 			exp = 0;
-			SetMaxExp(50);
+			SetMaxExp(PERCENT_EXP_INCREASE_PER_LEVEL);
 			LevelUp();
 		}
 
@@ -271,4 +272,9 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 	{
 		return true;
 	}
+
+    public Image GetIcon()
+    {
+        throw new System.NotImplementedException();
+    }
 }

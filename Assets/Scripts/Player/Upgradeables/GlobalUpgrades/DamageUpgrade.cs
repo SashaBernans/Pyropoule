@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Player.Upgradeables.GlobalUpgrades
 {
@@ -38,6 +39,11 @@ namespace Assets.Scripts.Player.Upgradeables.GlobalUpgrades
         public bool isActivated()
         {
             return true;
+        }
+
+        public Image GetIcon()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -43,5 +43,9 @@ public class ParticleSystemCollisions : MonoBehaviour
         }
         ps.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, particles);
         ps.Stop();
+        if (particlesAlive==0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

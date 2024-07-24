@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4077603006557329511}
   - component: {fileID: -6162396077315777688}
   - component: {fileID: 4067911322256936887}
-  - component: {fileID: 229340770658608592}
+  - component: {fileID: 4178486800606238302}
   - component: {fileID: 6213224443209159491}
+  - component: {fileID: 1099576752966705821}
   m_Layer: 0
   m_Name: Orb
   m_TagString: Untagged
@@ -30,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 4972865716016071008}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.785086, y: -1.1989754, z: 0}
-  m_LocalScale: {x: 1.2652, y: 1.2652, z: 1.2652}
+  m_LocalPosition: {x: -9.785086, y: -1.199, z: 0}
+  m_LocalScale: {x: 0.50256354, y: 0.50256354, z: 0.50256354}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: -947426037
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b8f06dfa9f724e8479724032f73e4f05, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ec3645c734874643a4cd4473ea60552, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1.26, y: 1.43}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -104,7 +105,7 @@ CircleCollider2D:
     m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 767
+    m_Bits: 1791
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -151,7 +152,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &229340770658608592
+--- !u!114 &4178486800606238302
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,12 +161,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4972865716016071008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7ec1189e5ea7a544b53fb3133a2d4ef, type: 3}
+  m_Script: {fileID: 11500000, guid: bdec34abdcc08454eb05a00a0388ee31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 180
-  attackSpeed: 0
-  damage: 10
 --- !u!114 &6213224443209159491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +176,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47897319f84e4304fa5fe12f444d9643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1099576752966705821
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972865716016071008}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f83bda9fd4192b9409e8b0ef1258b656, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static PanelManager;
 
 public class OptionText : MonoBehaviour
@@ -30,6 +31,7 @@ public class OptionText : MonoBehaviour
     {
         upgrade = upgradeable;
         TMP_Text[] texts = GetComponentsInChildren<TMP_Text>();
+        Image[] icon = GetComponentsInChildren<Image>();
 
         if (texts[0].gameObject.tag=="OptionTitle")
         {
@@ -41,13 +43,19 @@ public class OptionText : MonoBehaviour
             upgradeTitle = texts[1];
             upgradeText = texts[0];
         }
-        upgradeText.text = upgrade.GetUpgradeText();
-        upgradeTitle.text = upgrade.GetUpgradeTitle();
+        if (upgrade != null) {
+            upgradeText.text = upgrade.GetUpgradeText();
+            upgradeTitle.text = upgrade.GetUpgradeTitle();
+            icon[1].sprite = upgrade.GetIcon().sprite;
+        }
     }
 
     public void OnClick()
     {
-        upgrade.Upgrade();
+        if (upgrade != null)
+        {
+            upgrade.Upgrade();
+        }
         this.gameObject.GetComponentInParent<PanelManager>().gameObject.SetActive(false);
         PauseManager.Instance.PauseForMenu();
     }

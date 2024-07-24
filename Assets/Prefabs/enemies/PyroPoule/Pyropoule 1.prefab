@@ -108,7 +108,7 @@ CircleCollider2D:
     m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 375
+    m_Bits: 1919
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -204,8 +204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1a720f5dc8b454dbf77d0fd32d73c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   damagePopUp: {fileID: 0}
   assetRecycler: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  gameManager: {fileID: 0}
+  defaultMaterial: {fileID: 0}
   fireRate: 1
   baseHealth: 10
 --- !u!82 &3536700548128964568

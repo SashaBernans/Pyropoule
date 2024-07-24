@@ -9,14 +9,16 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
     public static GameManager Instance { get { return instance; } }
 
-    public Collider2D PlayerForceField { get => playerForceField;}
-    public Material FlashMaterial { get => flashMaterial;}
+    public Collider2D PlayerForceField { get => playerForceField; }
+    public Material FlashMaterial { get => flashMaterial; }
+    public GameObject AttackSpeedUpgradeIcon { get => attackSpeedUpgradeIcon; set => attackSpeedUpgradeIcon = value; }
 
     public float secondsSinceStart = 0;
     public float height = 0;
     public float globalScaler = 20;
     [SerializeField] private Collider2D playerForceField;
     [SerializeField] private Material flashMaterial;
+    [SerializeField] private GameObject attackSpeedUpgradeIcon;
 
     private int actualLevel = 0;
 

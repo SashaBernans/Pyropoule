@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBaseWeapon : Weapon, IUpgradeable
 {
@@ -96,5 +97,10 @@ public class PlayerBaseWeapon : Weapon, IUpgradeable
             Vector2 newScale = current + (current * percent / 100);
             p.transform.localScale = newScale;
         }
+    }
+
+    public Image GetIcon()
+    {
+        throw new NotImplementedException();
     }
 }

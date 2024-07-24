@@ -48,6 +48,10 @@ public class TroupeauManager : MonoBehaviour
         {
             GameManager.Instance.GameOver();
         }
+        else if (collision.tag == "Exp")
+        {
+            print("EXPCOLLISION");
+        }
         else
         {
             collision.gameObject.SetActive(false);
