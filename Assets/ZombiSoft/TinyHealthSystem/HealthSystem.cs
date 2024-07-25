@@ -16,7 +16,11 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 {
 	public static HealthSystem Instance;
 
-	public Image currentHealthBar;
+    [SerializeField] private GameObject regen1;
+    [SerializeField] private GameObject regen2;
+    [SerializeField] private GameObject regen3;
+
+    public Image currentHealthBar;
 	public Image currentHealthGlobe;
 	public PlayerUpgradesManager playerUpgradesManager;
 	public Text healthText;
@@ -34,14 +38,15 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 	private const string UPDRAGE_MAX_HEALTH = "Increase maximum health by ";
 	private const string UPDRAGE_HEAlTH_REGEN = "Increase health regeneration by 0.5 hitpoints per second";
     private const int PERCENT_EXP_INCREASE_PER_LEVEL = 10;
-    private string upgradeTitle = "Health";
+    private const string UPGRADE_TITLE = "Health";
 	private int upgradeHealthPercentage = 10;
+	private int regenUpgradeLevel = 1;
 
 
-	//==============================================================
-	// Regenerate Health & Mana
-	//==============================================================
-	public bool Regenerate = true;
+    //==============================================================
+    // Regenerate Health & Mana
+    //==============================================================
+    public bool Regenerate = true;
 	public float regen = 0.1f;
 	private float timeleft = 0.0f;	// Left time for current interval
 	public float regenUpdateInterval = 1f;
@@ -239,7 +244,8 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
     {
         if (upgradeIsRegen)
         {
-			regen += 0.5f;
+            regenUpgradeLevel += 1;
+            regen += 0.5f;
         }
         else
         {
@@ -265,7 +271,7 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 
     public string GetUpgradeTitle()
     {
-		return upgradeTitle;
+		return UPGRADE_TITLE;
     }
 
 	public bool isActivated()
@@ -275,6 +281,22 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
 
     public Image GetIcon()
     {
-        throw new System.NotImplementedException();
+		if (upgradeIsRegen)
+		{
+			if (regenUpgradeLevel == 1)
+			{
+                return regen1.GetComponent<Image>();
+            }
+            else if (regenUpgradeLevel == 2)
+            {
+                return regen2.GetComponent<Image>();
+            }
+            else if (regenUpgradeLevel == 3)
+            {
+                return regen3.GetComponent<Image>();
+            }
+            return regen3.GetComponent<Image>();
+        }
+		return regen1.GetComponent<Image>();
     }
 }

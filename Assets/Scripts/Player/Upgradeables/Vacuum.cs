@@ -8,6 +8,9 @@ public class Vacuum : MonoBehaviour, IUpgradeable
     private ParticleSystemForceField forceField;
     private int level = 1;
     [SerializeField] private int upgradePercentage;
+    [SerializeField] private GameObject vacuum1;
+    [SerializeField] private GameObject vacuum2;
+    [SerializeField] private GameObject vacuum3;
     private string upgradeTitle = "Vacuum level ";
     private string upgradeText = "Increase pick up range by ";
     public string GetUpgradeText()
@@ -49,6 +52,17 @@ public class Vacuum : MonoBehaviour, IUpgradeable
 
     public Image GetIcon()
     {
-        throw new System.NotImplementedException();
+        if(level == 1)
+        {
+            return vacuum1.GetComponent<Image>();
+        }
+        else if(level == 2)
+        {
+            return vacuum2.GetComponent<Image>();
+        }
+        else
+        {
+            return vacuum3.GetComponent<Image>();
+        }
     }
 }

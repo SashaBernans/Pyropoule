@@ -48,6 +48,7 @@ MonoBehaviour:
   speed: 180
   damage: 15
   orbPrefab: {fileID: 4972865716016071008, guid: 068bc2b3c2496be4e875d982b5c79a3c, type: 3}
+  orbIcon: {fileID: 6840159220945804411, guid: c186122e17798674290f3ce0937a3861, type: 3}
 --- !u!1001 &7071772154405706424
 PrefabInstance:
   m_ObjectHideFlags: 0

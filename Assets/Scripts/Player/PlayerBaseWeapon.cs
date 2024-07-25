@@ -10,6 +10,7 @@ public class PlayerBaseWeapon : Weapon, IUpgradeable
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float firerate;
     [SerializeField] private int damage;
+    [SerializeField] private GameObject icon;
 
     private bool canFire = true;
 
@@ -101,6 +102,6 @@ public class PlayerBaseWeapon : Weapon, IUpgradeable
 
     public Image GetIcon()
     {
-        throw new NotImplementedException();
+        return icon.GetComponent<Image>();
     }
 }

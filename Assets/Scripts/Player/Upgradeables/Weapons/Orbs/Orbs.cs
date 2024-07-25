@@ -12,6 +12,7 @@ public class Orbs : Weapon, IUpgradeable
     [SerializeField] private float speed;
     [SerializeField] private int damage;
     [SerializeField] private GameObject orbPrefab;
+    [SerializeField] private GameObject orbIcon;
 
     private Orb[] childrenOrbs;
     private int level = 1;
@@ -117,6 +118,6 @@ public class Orbs : Weapon, IUpgradeable
 
     public Image GetIcon()
     {
-        throw new NotImplementedException();
+        return null;
     }
 }

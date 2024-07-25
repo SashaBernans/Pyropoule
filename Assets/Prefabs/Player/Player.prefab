@@ -258,8 +258,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSpeed: 15
   assetRecycler: {fileID: 0}
-  firerate: 0.2
+  firerate: 0.3
   damage: 10
+  icon: {fileID: 4830894960168791307, guid: 82e57dc5449c59d47b888d4e7a78dc94, type: 3}
 --- !u!114 &3861348852541285946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,6 +526,18 @@ PrefabInstance:
       propertyPath: m_Parameters.m_MultiplyDragByParticleVelocity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3067545662032325929, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
+      propertyPath: vacuum1
+      value: 
+      objectReference: {fileID: 1403773695584750918, guid: c90d41805ea18894bb5560283ca2a434, type: 3}
+    - target: {fileID: 3067545662032325929, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
+      propertyPath: vacuum2
+      value: 
+      objectReference: {fileID: 1966507978457984023, guid: db8c69c0095289a4fa30d24fc0200ee4, type: 3}
+    - target: {fileID: 3067545662032325929, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
+      propertyPath: vacuum3
+      value: 
+      objectReference: {fileID: 9184630339098006895, guid: b0b2d034e47579545bea3eb1c05f6dc8, type: 3}
     - target: {fileID: 7039904682446332730, guid: 37e0bd43dc6c27244ad6dde9cf84e0b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.23

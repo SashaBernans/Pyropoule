@@ -673,6 +673,10 @@ PrefabInstance:
       propertyPath: flashMaterial
       value: 
       objectReference: {fileID: 2100000, guid: d86a8e223e53db24488ba2fb12be5727, type: 2}
+    - target: {fileID: 7013345496033036467, guid: a37e032822c60af448b614901515c26e, type: 3}
+      propertyPath: attackSpeedUpgradeIcon
+      value: 
+      objectReference: {fileID: 8321881855258565708, guid: 409158c34253d3641bfe7972d887e0d9, type: 3}
     - target: {fileID: 7246215835543405075, guid: a37e032822c60af448b614901515c26e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.044247977

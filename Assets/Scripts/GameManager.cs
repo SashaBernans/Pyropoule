@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Collider2D playerForceField;
     [SerializeField] private Material flashMaterial;
     [SerializeField] private GameObject attackSpeedUpgradeIcon;
+    [SerializeField] private GameObject damageUpgradeIcon;
+    [SerializeField] private GameObject projectileSpeedUpgradeIcon;
 
     private int actualLevel = 0;
 

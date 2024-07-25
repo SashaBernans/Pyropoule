@@ -31,7 +31,7 @@ public class OptionText : MonoBehaviour
     {
         upgrade = upgradeable;
         TMP_Text[] texts = GetComponentsInChildren<TMP_Text>();
-        Image[] icon = GetComponentsInChildren<Image>();
+        Image[] icons = GetComponentsInChildren<Image>();
 
         if (texts[0].gameObject.tag=="OptionTitle")
         {
@@ -46,7 +46,10 @@ public class OptionText : MonoBehaviour
         if (upgrade != null) {
             upgradeText.text = upgrade.GetUpgradeText();
             upgradeTitle.text = upgrade.GetUpgradeTitle();
-            icon[1].sprite = upgrade.GetIcon().sprite;
+            if (upgrade.GetIcon()!=null)
+            {
+                icons[1].sprite = upgrade.GetIcon().sprite;
+            }
         }
     }
 

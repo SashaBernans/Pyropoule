@@ -43,7 +43,7 @@ namespace Assets.Scripts.Player.Upgradeables
 
         public Image GetIcon()
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }
