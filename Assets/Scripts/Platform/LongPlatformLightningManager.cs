@@ -110,7 +110,7 @@ public class LongPlatformLightningManager : MonoBehaviour
         BoxCollider2D left = leftBound.GetComponent<BoxCollider2D>();
         BoxCollider2D right = rightBound.GetComponent<BoxCollider2D>();
 
-        
+        colli.offset = new Vector2((right.size.x * transform.childCount) /2  + right.size.x/2, 0);
 
         colli.size = new Vector2(right.size.x * transform.childCount, right.size.y * right.transform.localScale.y);
     }

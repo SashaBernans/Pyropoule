@@ -27,7 +27,7 @@ public class Vacuum : MonoBehaviour, IUpgradeable
     {
         forceField.endRange += forceField.endRange * upgradePercentage / 100;
         level += 1;
-        print("upgrade pick up range");
+        //print("upgrade pick up range");
     }
 
     // Start is called before the first frame update

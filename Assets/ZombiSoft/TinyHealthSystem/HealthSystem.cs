@@ -251,7 +251,7 @@ public class HealthSystem : MonoBehaviour, IUpgradeable
         {
 			SetMaxHealth(upgradeHealthPercentage);
         }
-		print("upgrade health");
+		//print("upgrade health");
     }
 
     public string GetUpgradeText()
