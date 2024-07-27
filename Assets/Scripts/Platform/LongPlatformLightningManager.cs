@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.XR;
 
 public class LongPlatformLightningManager : MonoBehaviour
@@ -94,12 +96,20 @@ public class LongPlatformLightningManager : MonoBehaviour
             {
                 GameObject g = CheckForClosestLongPlatform();
                 print(CheckForClosestLongPlatform());
-                Transform t = g.transform.GetChild(0);
-                t.GetComponent<SpriteRenderer>().color = new UnityEngine.Color(255, 255, 255, 255);
-                t.position = new Vector2(t.position.x, t.position.y - 0.5f);
+                ShootLigthning(g.transform.GetChild(0).transform.position);
                 print("On lONGPLATFORM");
             }
         }
+    }
+
+    private void ShootLigthning(Vector3 target)
+    {
+        GameObject lightning = AssetRecycler.Instance.LightningPool.Find(p => !p.activeInHierarchy);
+        lightning.transform.position = transform.position;
+
+        lightning.transform.rotation = Quaternion.LookRotation(Vector3.forward, target - lightning.transform.position);
+
+        lightning.SetActive(true);
     }
 
     public void SetColliderBounds()

@@ -18,6 +18,8 @@ public class AssetRecycler : MonoBehaviour
     public List<GameObject> LaserPool { get => laserPool; set => laserPool = value; }
     public List<GameObject> EggPool { get => eggPool; set => eggPool = value; }
     public List<GameObject> ExpPool { get => expPool; set => expPool = value; }
+    public List<GameObject> LightningPool { get => lightningPool; set => lightningPool = value; }
+    public List<GameObject> LightningGalePool { get => lightningGalePool; set => lightningGalePool = value; }
 
     [SerializeField] private GameObject dirtBlockPrefab;
     [SerializeField] private GameObject waterBlockPrefab;
@@ -30,6 +32,8 @@ public class AssetRecycler : MonoBehaviour
     [SerializeField] private GameObject bucketPrefab;
     [SerializeField] private GameObject eggPrefab;
     [SerializeField] private GameObject expPrefab;
+    [SerializeField] private GameObject lightningPrefab;
+    [SerializeField] private GameObject lightningGalePrefab;
 
     //Plateforms
     private List<GameObject> dirtBlockPool;
@@ -40,6 +44,7 @@ public class AssetRecycler : MonoBehaviour
     private List<GameObject> pyropouleProjectilePool;
     private List<GameObject> playerProjectilePool;
     private List<GameObject> laserPool;
+    private List<GameObject> lightningPool;
 
     //PowerUps
     private List<GameObject> bucketPool;
@@ -49,6 +54,7 @@ public class AssetRecycler : MonoBehaviour
     //enemies
     private List<GameObject> pyropoulePool;
     private List<GameObject> turkeyPool;
+    private List<GameObject> lightningGalePool;
 
     private static int pyropouleProjectilePoolSize = 100;
     private static int playerProjectilePoolSize = 10;
@@ -61,6 +67,9 @@ public class AssetRecycler : MonoBehaviour
     private const int LONG_PLATFORM_POOL_SIZE = 128;
     private const int EGG_POOL_SIZE = 3;
     private const int EXP_POOL_SIZE = 100;
+    private const int LIGHTNING_POOL_SIZE = 60;
+    private const int LIGHTNING_GALE_POOL_SIZE = 10;
+
 
     void Awake()
     {
@@ -83,6 +92,8 @@ public class AssetRecycler : MonoBehaviour
         laserPool = InstanciateGameObjectPool(laserPrefab, laserPoolSize);
         eggPool = InstanciateGameObjectPool(eggPrefab, EGG_POOL_SIZE);
         expPool = InstanciateGameObjectPool(expPrefab, EXP_POOL_SIZE);
+        lightningPool = InstanciateGameObjectPool(lightningPrefab, LIGHTNING_POOL_SIZE);
+        lightningGalePool = InstanciateGameObjectPool(lightningGalePrefab, LIGHTNING_GALE_POOL_SIZE);
     }
 
     // Start is called before the first frame update

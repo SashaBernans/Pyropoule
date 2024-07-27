@@ -2525,37 +2525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7875c39547040924ba157aab059c2394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1773571964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1773571965}
-  m_Layer: 0
-  m_Name: LineRenderer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1773571965
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773571964}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7056624, y: -0.5664209, z: -8.890276}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1879019354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3420,11 +3389,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3747523239751166374, guid: 85986f894f443074f85125e921c89185, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.68
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 3747523239751166374, guid: 85986f894f443074f85125e921c89185, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3144
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3747523239751166374, guid: 85986f894f443074f85125e921c89185, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3532,9 +3501,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7125752419164365447, guid: 1622ed192fdc129418ce98e7621e89ec, type: 3}
     - target: {fileID: 7862072355425483692, guid: c798d23383128774fbcb0c70ef9adcd1, type: 3}
+      propertyPath: lightningPrefab
+      value: 
+      objectReference: {fileID: 2555731163550711944, guid: 85986f894f443074f85125e921c89185, type: 3}
+    - target: {fileID: 7862072355425483692, guid: c798d23383128774fbcb0c70ef9adcd1, type: 3}
       propertyPath: pyropoulePrefab
       value: 
       objectReference: {fileID: 2813944760871292403, guid: 2cc55d0d7d93c4b4ba728e269b6f5bda, type: 3}
+    - target: {fileID: 7862072355425483692, guid: c798d23383128774fbcb0c70ef9adcd1, type: 3}
+      propertyPath: lightningGalePrefab
+      value: 
+      objectReference: {fileID: 3731863266264395419, guid: 8abae4880ec84644b97a24d0866c2d19, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4137,4 +4114,3 @@ SceneRoots:
   - {fileID: 1323920989}
   - {fileID: 8602858190197289882}
   - {fileID: 6907207290832007639}
-  - {fileID: 1773571965}

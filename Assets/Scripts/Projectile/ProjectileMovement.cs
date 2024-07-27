@@ -87,7 +87,7 @@ public class ProjectileMovement : MonoBehaviour
             float rotation = (float)((180 / System.Math.PI) * radRotation);
 
             //checks if sprites needs to be flipped
-            if (rotation >1 | rotation <-1)
+            if (rotation >0 | rotation <0)
             {
                 if (target.x > transform.position.x)
                 {
