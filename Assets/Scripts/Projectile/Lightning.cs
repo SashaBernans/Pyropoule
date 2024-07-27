@@ -20,4 +20,9 @@ public class Lightning : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(Vector3.forward, target - transform.position);
     }*/
+
+    private void OnDisable()
+    {
+        transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+    }
 }

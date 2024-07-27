@@ -9,18 +9,19 @@ using UnityEngine.XR;
 
 public class LongPlatformLightningManager : MonoBehaviour
 {
-    private bool isLightningActive = false;
     public bool isWaterPlatform = false;
 
     public BoxCollider2D colli;
     public GameObject bound;
     private Bounds newbound;
     private Transform self;
+    private LongPlatformCollisions longPlatformCollisions;
 
     // Start is called before the first frame update
     void Start()
     {
         colli = GetComponent<BoxCollider2D>();
+        longPlatformCollisions = GetComponent<LongPlatformCollisions>();
     }
 
     // Update is called once per frame
@@ -28,36 +29,6 @@ public class LongPlatformLightningManager : MonoBehaviour
     {
         
     }
-
-    private void OnEnable()
-    {
-        /*if (transform.childCount>0 && transform.GetChild(0).tag == "Platform")
-        {
-            isWaterPlatform = true;
-            //CheckForClosestLongPlatform().transform.GetChild(0).GetComponent<SpriteRenderer>().color = new UnityEngine.Color(23,23,23);
-        }*/
-    }
-
-    /*private GameObject CheckForClosestLongPlatform()
-    {
-        float previousDistance = 0;
-        GameObject closestPlatform = null;
-        print(WorldGenerator.Instance.activeWaterLongPlatforms.Count);
-        foreach (GameObject platform in WorldGenerator.Instance.activeWaterLongPlatforms)
-        {
-            closestPlatform = platform;
-            if (platform.activeSelf)
-            {
-                float currentDistance = Vector2.Distance(platform.transform.position, transform.position);
-                if (currentDistance < previousDistance)
-                {
-                    previousDistance = currentDistance;
-                    closestPlatform = platform;
-                }
-            }
-        }
-        return closestPlatform;
-    }*/
 
     private GameObject CheckForClosestLongPlatform()
     {
@@ -71,8 +42,11 @@ public class LongPlatformLightningManager : MonoBehaviour
                 float currentDistance = Vector2.Distance(platform.transform.position, transform.position);
                 if (currentDistance < closestDistance)
                 {
-                    closestDistance = currentDistance;
-                    closestPlatform = platform;
+                    if (!platform.GetComponent<LongPlatformCollisions>().isLightningActive)
+                    {
+                        closestDistance = currentDistance;
+                        closestPlatform = platform;
+                    }
                 }
             }
         }
@@ -94,22 +68,49 @@ public class LongPlatformLightningManager : MonoBehaviour
         {
             if (collision.tag == "Player")
             {
-                GameObject g = CheckForClosestLongPlatform();
-                print(CheckForClosestLongPlatform());
-                ShootLigthning(g.transform.GetChild(0).transform.position);
-                print("On lONGPLATFORM");
+                if (!longPlatformCollisions.isLightningActive)
+                {
+                    ShootLightning();
+                    longPlatformCollisions.isLightningActive = true;
+                    print("On lONGPLATFORM");
+                }
             }
         }
     }
 
-    private void ShootLigthning(Vector3 target)
+    public void ShootLightning()
     {
-        GameObject lightning = AssetRecycler.Instance.LightningPool.Find(p => !p.activeInHierarchy);
-        lightning.transform.position = transform.position;
+        GameObject g = CheckForClosestLongPlatform();
+        if (g != null)
+        {
+            Vector3 target = g.transform.GetChild(g.transform.childCount / 2).transform.position;
 
-        lightning.transform.rotation = Quaternion.LookRotation(Vector3.forward, target - lightning.transform.position);
+            GameObject lightning = AssetRecycler.Instance.LightningPool.Find(p => !p.activeInHierarchy);
+            BoxCollider2D lightningColli = lightning.GetComponent<BoxCollider2D>();
+            lightning.transform.position = transform.GetChild(0).position;
 
-        lightning.SetActive(true);
+            lightning.transform.rotation = Quaternion.LookRotation(Vector3.forward, target - lightning.transform.position);
+
+            lightning.SetActive(true);
+            AjustScale(target, lightning, lightningColli);
+        }
+    }
+
+    private static void AjustScale(Vector3 target, GameObject lightning, BoxCollider2D lightningColli)
+    {
+        float ySizeToBe = Vector2.Distance(lightning.transform.position, target);
+
+        if (ySizeToBe < lightningColli.size.y)
+        {
+            float yScale = ySizeToBe / lightningColli.size.y;
+            lightning.transform.localScale = new Vector3(1, yScale, 1);
+        }
+        else
+        {
+            float yScale = ySizeToBe / lightningColli.size.y;
+            lightning.transform.localScale = new Vector3(1, yScale, 1);
+        }
+        print(lightningColli.size.y);
     }
 
     public void SetColliderBounds()
@@ -120,8 +121,9 @@ public class LongPlatformLightningManager : MonoBehaviour
         BoxCollider2D left = leftBound.GetComponent<BoxCollider2D>();
         BoxCollider2D right = rightBound.GetComponent<BoxCollider2D>();
 
-        colli.offset = new Vector2((right.size.x * transform.childCount) /2  + right.size.x/2, 0);
+        //This just works
+        colli.offset = new Vector2((right.size.x * transform.childCount /2  + right.size.x/2)*1.20f, 0);
 
-        colli.size = new Vector2(right.size.x * transform.childCount, right.size.y * right.transform.localScale.y);
+        colli.size = new Vector2(right.size.x * transform.childCount*1.20f, right.size.y * right.transform.localScale.y);
     }
 }
