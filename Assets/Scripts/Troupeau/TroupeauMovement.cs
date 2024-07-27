@@ -50,7 +50,7 @@ public class TroupeauManager : MonoBehaviour
         }
         else if (collision.tag == "Exp")
         {
-            print("EXPCOLLISION");
+            //print("EXPCOLLISION");
         }
         else
         {

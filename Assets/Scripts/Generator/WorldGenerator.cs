@@ -23,6 +23,8 @@ public class WorldGenerator : MonoBehaviour
 
     private float lastLongPlateformLayerY = -4.4f;
 
+    public List<GameObject> activeWaterLongPlatforms = new List<GameObject>();
+
 
 
     // Start is called before the first frame update
@@ -79,6 +81,16 @@ public class WorldGenerator : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 GameObject longPlatform = GenerateLongPlatform(Random.Range(1, 5));
+
+                //checks if platform is water
+                if (longPlatform.transform.GetChild(0).tag == "Platform" )
+                {
+                    activeWaterLongPlatforms.Add(longPlatform);
+                    LongPlatformLightningManager l = longPlatform.GetComponent<LongPlatformLightningManager>();
+                    l.SetColliderBounds();
+                    l.isWaterPlatform = true;
+                }
+
                 PlatformPlacing(longPlatform, lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS, i);
                 if (pyropouleSpawnrate >= Random.Range(0, 100))
                 {

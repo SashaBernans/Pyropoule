@@ -41,7 +41,7 @@ public abstract class Weapon : MonoBehaviour
         Vector2 current = transform.localScale;
         Vector2 newScale = current+(current * percent/100);
         transform.localScale = newScale;
-        print(current);
-        print(newScale);
+        //print(current);
+        //print(newScale);
     }
 }

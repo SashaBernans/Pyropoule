@@ -24,8 +24,8 @@ public class PlayerUpgradesManager : MonoBehaviour
         weapons = GetWeapons(upgradeables);
         AddGlobalUpgrades();
 
-        for(int i = 0; i < upgradeables.Count; i++)
-            print(upgradeables.ElementAt(i));
+        /*for(int i = 0; i < upgradeables.Count; i++)
+            print(upgradeables.ElementAt(i));*/
 
        // AddUpgradeToTest();
     }
