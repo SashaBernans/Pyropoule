@@ -16,6 +16,7 @@ public class LongPlatformLightningManager : MonoBehaviour
     private Bounds newbound;
     private Transform self;
     private LongPlatformCollisions longPlatformCollisions;
+    internal GameObject currentLightning;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,6 @@ public class LongPlatformLightningManager : MonoBehaviour
     {
         float closestDistance = float.MaxValue;
         GameObject closestPlatform = null;
-        print(WorldGenerator.Instance.activeWaterLongPlatforms.Count);
         foreach (GameObject platform in WorldGenerator.Instance.activeWaterLongPlatforms)
         {
             if (platform.activeSelf && platform.transform.position != transform.position)
@@ -70,6 +70,7 @@ public class LongPlatformLightningManager : MonoBehaviour
             {
                 if (!longPlatformCollisions.isLightningActive)
                 {
+                    StartCoroutine(longPlatformCollisions.ManageElectrifyTime());
                     ShootLightning();
                     longPlatformCollisions.isLightningActive = true;
                     print("On lONGPLATFORM");
@@ -86,6 +87,7 @@ public class LongPlatformLightningManager : MonoBehaviour
             Vector3 target = g.transform.GetChild(g.transform.childCount / 2).transform.position;
 
             GameObject lightning = AssetRecycler.Instance.LightningPool.Find(p => !p.activeInHierarchy);
+            currentLightning = lightning;
             BoxCollider2D lightningColli = lightning.GetComponent<BoxCollider2D>();
             lightning.transform.position = transform.GetChild(0).position;
 
@@ -103,14 +105,13 @@ public class LongPlatformLightningManager : MonoBehaviour
         if (ySizeToBe < lightningColli.size.y)
         {
             float yScale = ySizeToBe / lightningColli.size.y;
-            lightning.transform.localScale = new Vector3(1, yScale, 1);
+            lightning.transform.localScale = new Vector3(lightning.transform.localScale.x, yScale, lightning.transform.localScale.z);
         }
         else
         {
             float yScale = ySizeToBe / lightningColli.size.y;
-            lightning.transform.localScale = new Vector3(1, yScale, 1);
+            lightning.transform.localScale = new Vector3(lightning.transform.localScale.x, yScale, lightning.transform.localScale.z);
         }
-        print(lightningColli.size.y);
     }
 
     public void SetColliderBounds()

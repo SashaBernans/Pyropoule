@@ -122,7 +122,7 @@ public class AssetRecycler : MonoBehaviour
         return pool;
     }
 
-    public List<GameObject> getActiveGameObjects(int nbGameObjects, List<GameObject> list)
+    public List<GameObject> GetActiveGameObjects(int nbGameObjects, List<GameObject> list)
     {
         List<GameObject> allActiveGameObjects = list.FindAll(p => !p.activeInHierarchy);
         List<GameObject> someActivegameObjects = new(nbGameObjects);

@@ -95,7 +95,7 @@ public class WorldGenerator : MonoBehaviour
                 if (pyropouleSpawnrate >= Random.Range(0, 100))
                 {
                     //addEntityToPlatform(p, assetRecycler.PyropoulePool.Find(p => !p.activeInHierarchy));
-                    List<GameObject> gameobjects = assetRecycler.getActiveGameObjects(7, assetRecycler.PyropoulePool);
+                    List<GameObject> gameobjects = assetRecycler.GetActiveGameObjects(4, assetRecycler.PyropoulePool);
                     addEntitiesToPlatform(longPlatform, gameobjects);
                 }
                 else if (turkeySpawnRate >= Random.Range(0, 100))
