@@ -68,7 +68,7 @@ public class AssetRecycler : MonoBehaviour
     private const int EGG_POOL_SIZE = 3;
     private const int EXP_POOL_SIZE = 100;
     private const int LIGHTNING_POOL_SIZE = 60;
-    private const int LIGHTNING_GALE_POOL_SIZE = 10;
+    private const int LIGHTNING_GALE_POOL_SIZE = 100;
 
 
     void Awake()
@@ -122,7 +122,7 @@ public class AssetRecycler : MonoBehaviour
         return pool;
     }
 
-    public List<GameObject> GetActiveGameObjects(int nbGameObjects, List<GameObject> list)
+    public List<GameObject> GetInactiveGameObjects(int nbGameObjects, List<GameObject> list)
     {
         List<GameObject> allActiveGameObjects = list.FindAll(p => !p.activeInHierarchy);
         List<GameObject> someActivegameObjects = new(nbGameObjects);

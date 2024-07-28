@@ -16,6 +16,7 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField] private int bucketSpawnRatePercentage;
     [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private Collider2D playerForceField;
+    //[SerializeField] private Camera camera;
 
     public static WorldGenerator Instance { get { return instance; } }
 
@@ -70,8 +71,18 @@ public class WorldGenerator : MonoBehaviour
         while (true)
         {
             GenerateLayer();
+            ManageFlyingEnemiesSpawns();
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    private void ManageFlyingEnemiesSpawns()
+    {
+        Vector2 cameraPosition = Camera.main.transform.position;
+        Vector2 spawnPosition1 = new Vector2(cameraPosition.x + 8 , cameraPosition.y + 7);
+        Vector2 spawnPosition2 = new Vector2(cameraPosition.x - 8, cameraPosition.y + 7);
+        SpawnLightningGale(spawnPosition1);
+        SpawnLightningGale(spawnPosition2);
     }
 
     private void GenerateLayer()
@@ -95,7 +106,7 @@ public class WorldGenerator : MonoBehaviour
                 if (pyropouleSpawnrate >= Random.Range(0, 100))
                 {
                     //addEntityToPlatform(p, assetRecycler.PyropoulePool.Find(p => !p.activeInHierarchy));
-                    List<GameObject> gameobjects = assetRecycler.GetActiveGameObjects(4, assetRecycler.PyropoulePool);
+                    List<GameObject> gameobjects = assetRecycler.GetInactiveGameObjects(4, assetRecycler.PyropoulePool);
                     addEntitiesToPlatform(longPlatform, gameobjects);
                 }
                 else if (turkeySpawnRate >= Random.Range(0, 100))
@@ -191,5 +202,12 @@ public class WorldGenerator : MonoBehaviour
                 entities[i].SetActive(true);
             }
         }
+    }
+
+    private void SpawnLightningGale(Vector2 position)
+    {
+        GameObject lightningGale = assetRecycler.LightningGalePool.Find(p => !p.activeInHierarchy);
+        lightningGale.transform.position = position;
+        lightningGale.SetActive(true);
     }
 }
