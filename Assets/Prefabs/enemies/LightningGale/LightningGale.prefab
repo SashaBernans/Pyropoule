@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8103944323726413341}
   - component: {fileID: 7320283277340337907}
   - component: {fileID: 2376243570659442645}
+  - component: {fileID: 7397392373903162443}
   m_Layer: 0
   m_Name: LightningGale
   m_TagString: Pyropoule
@@ -204,6 +205,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7397392373903162443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3731863266264395419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd08d6dcad4c244cb3c3321fb76932b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1001 &2884351556048955669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,16 +243,28 @@ PrefabInstance:
       value: PopUpParent
       objectReference: {fileID: 0}
     - target: {fileID: 6600299650249681647, guid: f5e3dca975ff311438a19e15338dc9d2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.7352543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600299650249681647, guid: f5e3dca975ff311438a19e15338dc9d2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.7352543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600299650249681647, guid: f5e3dca975ff311438a19e15338dc9d2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.7352543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600299650249681647, guid: f5e3dca975ff311438a19e15338dc9d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.19
+      value: 0.38695
       objectReference: {fileID: 0}
     - target: {fileID: 6600299650249681647, guid: f5e3dca975ff311438a19e15338dc9d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.148
+      value: 9.73
       objectReference: {fileID: 0}
     - target: {fileID: 6600299650249681647, guid: f5e3dca975ff311438a19e15338dc9d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.899701
+      value: -8.8847
       objectReference: {fileID: 0}
     - target: {fileID: 6600299650249681647, guid: f5e3dca975ff311438a19e15338dc9d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -332,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3013762850941746748, guid: 92a2ad07c48908f4593690c63fd45446, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.92
+      value: -5.78
       objectReference: {fileID: 0}
     - target: {fileID: 3013762850941746748, guid: 92a2ad07c48908f4593690c63fd45446, type: 3}
       propertyPath: m_LocalPosition.z

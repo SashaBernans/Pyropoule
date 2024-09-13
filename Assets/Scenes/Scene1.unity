@@ -3665,7 +3665,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5381717417137557271, guid: c6a7eabab2901bc4aade0d21ea917a90, type: 3}
       propertyPath: godMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 267071699829475462, guid: c6a7eabab2901bc4aade0d21ea917a90, type: 3}
       propertyPath: m_Size.x
@@ -3946,7 +3946,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8899803511266934976, guid: 8abae4880ec84644b97a24d0866c2d19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5898972352057278089, guid: 8abae4880ec84644b97a24d0866c2d19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5202804203824039824, guid: 8abae4880ec84644b97a24d0866c2d19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 8abae4880ec84644b97a24d0866c2d19, type: 3}
 --- !u!1001 &7916947768896033958
 PrefabInstance:
