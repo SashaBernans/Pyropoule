@@ -1,24 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pyropoule : MonoBehaviour, IDamageable
+public class Pyropoule : Enemy, IDamageable, IScaleable
 {
-    [SerializeField] private AssetRecycler assetRecycler;
     [SerializeField] private float fireRate;
-    [SerializeField] private float health;
+    [SerializeField] private float baseHealth;
 
-    private HealthBarManager healthBar;
-    private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     private bool canShoot;
+
+    public override float enemyBaseHealth => baseHealth;
+
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        assetRecycler = AssetRecycler.Instance;
+        base.Start();
         audioSource = GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        healthBar = GetComponentInChildren<HealthBarManager>();
         canShoot = true;
     }
 
@@ -73,16 +72,6 @@ public class Pyropoule : MonoBehaviour, IDamageable
         else if (dotProduct < 0)
         {
             spriteRenderer.flipX = true;
-        }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        healthBar.TakeDamage(damage / health * 100);
-        health -= damage;
-        if (health <= 0)
-        {
-            gameObject.SetActive(false);
         }
     }
 }

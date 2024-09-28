@@ -19,11 +19,11 @@ public class Demo : MonoBehaviour
     }
     public void Button3()
     {
-        HealthSystem.Instance.UseMana(10f); // Decrease mana 10 points
+        HealthSystem.Instance.LooseExp(10f); // Decrease mana 10 points
     }
     public void Button4()
     {
-        HealthSystem.Instance.RestoreMana(10f); // Increase mana 10 points
+        HealthSystem.Instance.GainExp(10f); // Increase mana 10 points
     }
     public void Button5()
     {
@@ -31,6 +31,6 @@ public class Demo : MonoBehaviour
     }
     public void Button6()
     {
-        HealthSystem.Instance.SetMaxMana(10f); // Add 10 % to max mana
+        HealthSystem.Instance.SetMaxExp(10f); // Add 10 % to max mana
     }
 }

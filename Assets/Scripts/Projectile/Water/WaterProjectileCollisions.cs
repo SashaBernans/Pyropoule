@@ -5,12 +5,12 @@ using UnityEngine;
 public class WaterProjectileCollisions : MonoBehaviour
 {
     [SerializeField] private GameObject particalSystemPrefab;
-    [SerializeField] private int damage;
+    private ProjectileMovement pm;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        pm = GetComponent<ProjectileMovement>();
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class WaterProjectileCollisions : MonoBehaviour
         if (collision.gameObject.tag == "Pyropoule")
         {
             IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(pm.Damage);
         }
     }
 
@@ -50,7 +50,7 @@ public class WaterProjectileCollisions : MonoBehaviour
             newParticalSystem.transform.position = transform.position;
             gameObject.SetActive(false);
             IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(pm.Damage);
         }
     }
 }

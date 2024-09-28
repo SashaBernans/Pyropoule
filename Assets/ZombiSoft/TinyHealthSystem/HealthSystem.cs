@@ -12,12 +12,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthSystem : MonoBehaviour
+public class HealthSystem : MonoBehaviour, IUpgradeable
 {
 	public static HealthSystem Instance;
 
-	public Image currentHealthBar;
+    [SerializeField] private GameObject regen1;
+    [SerializeField] private GameObject regen2;
+    [SerializeField] private GameObject regen3;
+
+    public Image currentHealthBar;
 	public Image currentHealthGlobe;
+	public PlayerUpgradesManager playerUpgradesManager;
 	public Text healthText;
 	public float hitPoint = 100f;
 	public float maxHitPoint = 100f;
@@ -25,23 +30,33 @@ public class HealthSystem : MonoBehaviour
 	public Image currentManaBar;
 	public Image currentManaGlobe;
 	public Text manaText;
-	public float manaPoint = 100f;
-	public float maxManaPoint = 100f;
+	public float exp = 0f;
+	public float maxExp = 100f;
+	private float playerLevel = 1;
 
-	//==============================================================
-	// Regenerate Health & Mana
-	//==============================================================
-	public bool Regenerate = true;
+	private bool upgradeIsRegen =true;
+	private const string UPDRAGE_MAX_HEALTH = "Increase maximum health by ";
+	private const string UPDRAGE_HEAlTH_REGEN = "Increase health regeneration by 0.5 hitpoints per second";
+    private const int PERCENT_EXP_INCREASE_PER_LEVEL = 10;
+    private const string UPGRADE_TITLE = "Health";
+	private int upgradeHealthPercentage = 10;
+	private int regenUpgradeLevel = 1;
+
+
+    //==============================================================
+    // Regenerate Health & Mana
+    //==============================================================
+    public bool Regenerate = true;
 	public float regen = 0.1f;
 	private float timeleft = 0.0f;	// Left time for current interval
 	public float regenUpdateInterval = 1f;
 
 	public bool GodMode;
 
-	//==============================================================
-	// Awake
-	//==============================================================
-	void Awake()
+    //==============================================================
+    // Awake
+    //==============================================================
+    void Awake()
 	{
 		Instance = this;
 	}
@@ -77,12 +92,12 @@ public class HealthSystem : MonoBehaviour
 			if (GodMode)
 			{
 				HealDamage(maxHitPoint);
-				RestoreMana(maxManaPoint);
+				//GainExp(maxManaPoint);
 			}
 			else
 			{
 				HealDamage(regen);
-				RestoreMana(regen);				
+				//GainExp(regen);				
 			}
 
 			UpdateGraphics();
@@ -115,7 +130,6 @@ public class HealthSystem : MonoBehaviour
 			hitPoint = 0;
 
 		UpdateGraphics();
-
 		//StartCoroutine(PlayerHurts());
 	}
 
@@ -139,38 +153,49 @@ public class HealthSystem : MonoBehaviour
 	//==============================================================
 	private void UpdateManaBar()
 	{
-		float ratio = manaPoint / maxManaPoint;
+		float ratio = exp / maxExp;
 		currentManaBar.rectTransform.localPosition = new Vector3(currentManaBar.rectTransform.rect.width * ratio - currentManaBar.rectTransform.rect.width, 0, 0);
-		manaText.text = manaPoint.ToString ("0") + "/" + maxManaPoint.ToString ("0");
+		//manaText.text = manaPoint.ToString ("0") + "/" + maxManaPoint.ToString ("0");
 	}
 
 	private void UpdateManaGlobe()
 	{
-		float ratio = manaPoint / maxManaPoint;
+		float ratio = exp / maxExp;
 		currentManaGlobe.rectTransform.localPosition = new Vector3(0, currentManaGlobe.rectTransform.rect.height * ratio - currentManaGlobe.rectTransform.rect.height, 0);
-		manaText.text = manaPoint.ToString("0") + "/" + maxManaPoint.ToString("0");
+		//manaText.text = manaPoint.ToString("0") + "/" + maxManaPoint.ToString("0");
 	}
 
-	public void UseMana(float Mana)
+	public void LooseExp(float Exp)
 	{
-		manaPoint -= Mana;
-		if (manaPoint < 1) // Mana is Zero!!
-			manaPoint = 0;
+		exp -= Exp;
+		if (exp < 1) // Mana is Zero!!
+			exp = 0;
 
 		UpdateGraphics();
 	}
 
-	public void RestoreMana(float Mana)
+	public void GainExp(float Exp)
 	{
-		manaPoint += Mana;
-		if (manaPoint > maxManaPoint) 
-			manaPoint = maxManaPoint;
+		exp += Exp;
+		if (exp > maxExp)
+        {
+			exp = 0;
+			SetMaxExp(PERCENT_EXP_INCREASE_PER_LEVEL);
+			LevelUp();
+		}
 
 		UpdateGraphics();
 	}
-	public void SetMaxMana(float max)
+
+	private void LevelUp()
+    {
+		playerLevel += 1;
+		manaText.text = "lvl " + playerLevel.ToString();
+		PanelManager.Instance.SetUpText(playerUpgradesManager.Upgradeables);
+    }
+	public void SetMaxExp(float max)
 	{
-		maxManaPoint += (int)(maxManaPoint * max / 100);
+		maxExp += (int)(maxExp * max / 100);
 		
 		UpdateGraphics();
 	}
@@ -183,7 +208,7 @@ public class HealthSystem : MonoBehaviour
 		UpdateHealthBar();
 		UpdateHealthGlobe();
 		UpdateManaBar();
-		UpdateManaGlobe();
+		//UpdateManaGlobe();
 	}
 
 	//==============================================================
@@ -214,4 +239,64 @@ public class HealthSystem : MonoBehaviour
 
 		yield return null;
 	}
+
+    public void Upgrade()
+    {
+        if (upgradeIsRegen)
+        {
+            regenUpgradeLevel += 1;
+            regen += 0.5f;
+        }
+        else
+        {
+			SetMaxHealth(upgradeHealthPercentage);
+        }
+		//print("upgrade health");
+    }
+
+    public string GetUpgradeText()
+    {
+		float random = Random.Range(0,100);
+        if (random <50)
+        {
+			upgradeIsRegen = false;
+			return UPDRAGE_MAX_HEALTH + upgradeHealthPercentage.ToString()+ "%";
+		}
+        else
+        {
+			upgradeIsRegen = true;
+			return UPDRAGE_HEAlTH_REGEN;
+        }
+    }
+
+    public string GetUpgradeTitle()
+    {
+		return UPGRADE_TITLE;
+    }
+
+	public bool isActivated()
+	{
+		return true;
+	}
+
+    public Image GetIcon()
+    {
+		if (upgradeIsRegen)
+		{
+			if (regenUpgradeLevel == 1)
+			{
+                return regen1.GetComponent<Image>();
+            }
+            else if (regenUpgradeLevel == 2)
+            {
+                return regen2.GetComponent<Image>();
+            }
+            else if (regenUpgradeLevel == 3)
+            {
+                return regen3.GetComponent<Image>();
+            }
+            return regen3.GetComponent<Image>();
+        }
+		return regen1.GetComponent<Image>();
+    }
 }

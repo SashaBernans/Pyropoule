@@ -7,6 +7,7 @@ public class PlayerControls : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private bool godMode;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -18,7 +19,7 @@ public class PlayerControls : MonoBehaviour
     private const int hardBlockToTheLeft = -1;
     private int collisionFailSafe = 0;
 
-    private float horizontal;
+    private float vertical;
 
     private const float coyoteTimeMax = 0.2f;
     private float coyoteTime = coyoteTimeMax;
@@ -36,7 +37,14 @@ public class PlayerControls : MonoBehaviour
     void Update()
     {
         HorizontalMovement();
-        VerticalMovement();
+        if (godMode)
+        {
+            GodModeVerticalMovement();
+        }
+        else
+        {
+            VerticalMovement();
+        }
     }
 
     private bool IsGrounded()
@@ -53,6 +61,14 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetButtonDown("Jump") && coyoteTime > 0f) InitJumpMovement();
     }
 
+    private void GodModeVerticalMovement()
+    {
+        vertical = Input.GetAxis("Vertical");
+
+        Vector2 movement = new Vector2(rb.velocity.x, vertical * speed);
+        rb.velocity = movement;
+    }
+
     private void InitJumpMovement()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -65,14 +81,14 @@ public class PlayerControls : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Horizontal");
 
-        if (collisionFailSafe < 0 && horizontal < 0f)  //Si le bloc est à gauche et qu'on pousse vers la gauche
-            horizontal = 0f;
-        else if (collisionFailSafe > 0 && horizontal > 0f)  //Si le bloc est à droite et qu'on pousse vers la droite
-            horizontal = 0f;
+        if (collisionFailSafe < 0 && vertical < 0f)  //Si le bloc est à gauche et qu'on pousse vers la gauche
+            vertical = 0f;
+        else if (collisionFailSafe > 0 && vertical > 0f)  //Si le bloc est à droite et qu'on pousse vers la droite
+            vertical = 0f;
 
-        Vector2 movement = new Vector2(horizontal * speed, rb.velocity.y);
+        Vector2 movement = new Vector2(vertical * speed, rb.velocity.y);
         rb.velocity = movement;
 
         ManageLookingDirection();

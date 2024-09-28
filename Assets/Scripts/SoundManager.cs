@@ -10,10 +10,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip powerUp;
     [SerializeField] private AudioClip shootFlame;
     [SerializeField] private AudioClip chickenHurt;
+    [SerializeField] private AudioClip expPickUp;
 
     public static SoundManager Instance { get { return instance; } }
     public AudioClip PlayerJump { get { return playerJump; } }
     public AudioClip PowerUp { get { return powerUp; } }
+    public AudioClip ExpPickUp { get { return expPickUp; } }
 
     public AudioClip ShootFlame { get => shootFlame; set => shootFlame = value; }
     public AudioClip ChickenHurt { get => chickenHurt; set => chickenHurt = value; }

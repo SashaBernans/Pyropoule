@@ -2,26 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turkey : MonoBehaviour, IDamageable
+public class Turkey : Enemy, IDamageable, IScaleable
 {
-    [SerializeField] private AssetRecycler assetRecycler;
+    //[SerializeField] private AssetRecycler assetRecycler;
+    [SerializeField] private float baseHealth;
 
-    private SpriteRenderer spriteRenderer;
-    private AudioSource audioSource;
     private GameObject laser;
-    private HealthBarManager healthBar;
-    [SerializeField] private float health;
+
+    public override float enemyBaseHealth => baseHealth;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        assetRecycler = AssetRecycler.Instance;
-        audioSource = GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        laser = assetRecycler.LaserPool.Find(p => !p.activeInHierarchy);
+        base.Start();
+        //assetRecycler = AssetRecycler.Instance;
+        laser = base.assetRecycler.LaserPool.Find(p => !p.activeInHierarchy);
         laser.transform.position = transform.position;
         laser.SetActive(true);
-        healthBar = GetComponentInChildren<HealthBarManager>();
     }
     private void OnEnable()
     {
@@ -38,30 +35,13 @@ public class Turkey : MonoBehaviour, IDamageable
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Projectile")
-        {
-            //gameObject.SetActive(false);
-        }
-    }
-
     //Disable laser when turkey dies
-    private void OnDisable()
+    override public void OnDisable()
     {
+        base.OnDisable();
         if (laser != null)
         {
             laser.SetActive(false);
-        }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        healthBar.TakeDamage(damage / health * 100);
-        health -= damage;
-        if (health <= 0)
-        {
-            gameObject.SetActive(false);
         }
     }
 }

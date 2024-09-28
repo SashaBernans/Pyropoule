@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PyropoulesBackground_0: 8384138063608101723
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

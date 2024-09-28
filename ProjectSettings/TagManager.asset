@@ -15,19 +15,27 @@ TagManager:
   - TextStaticScore
   - Bucket
   - Laser
+  - ManaSprite
+  - HealthSprite
+  - Egg
+  - OptionTitle
+  - Exp
+  - LongPlatform
+  - Lightning
+  - Shock
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Exp
   - Water
   - UI
   - Plateform
   - Player
   - Pyropoule
-  - 
-  - 
-  - 
+  - ForceField
+  - Troupeau
+  - Lightning
   - 
   - 
   - 

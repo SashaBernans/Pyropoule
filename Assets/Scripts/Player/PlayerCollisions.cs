@@ -32,11 +32,7 @@ public class PlayerCollisions : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Flame")
-        {
-            audioSource.PlayOneShot(SoundManager.Instance.ChickenHurt);
-            StartCoroutine(Flash());
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,17 +40,6 @@ public class PlayerCollisions : MonoBehaviour, IDamageable
         if (collision.gameObject.tag == "Bucket")
         {
             audioSource.PlayOneShot(SoundManager.Instance.PowerUp);
-        }
-        if (collision.gameObject.tag == "Laser")
-        {
-            if (canBeHit)
-            {
-                audioSource.PlayOneShot(SoundManager.Instance.ChickenHurt);
-                TakeDamage(10);
-                StartCoroutine(Flash());
-                canBeHit = false;
-                StartCoroutine(ManageLaserHits());
-            }
         }
     }
 
@@ -77,6 +62,8 @@ public class PlayerCollisions : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
+        StartCoroutine(Flash());
         healthSystem.TakeDamage(damage);
+        audioSource.PlayOneShot(SoundManager.Instance.ChickenHurt);
     }
 }
