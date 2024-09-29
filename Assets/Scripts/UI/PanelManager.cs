@@ -83,26 +83,4 @@ public class PanelManager : MonoBehaviour
 
         return selectedUpgradeables;
     }
-
-
-
-    public enum Upgrade
-    {
-        BaseWeaponDamage,
-        BaseWeaponSpeed
-    }
-
-    private Upgrade GetRandomUpgrade()
-    {
-        // Create an instance of Random
-        System.Random random = new System.Random();
-
-        // Get all values of the Colors enum
-        Array values = Enum.GetValues(typeof(Upgrade));
-
-        // Generate a random index based on the number of values in the enum
-        Upgrade randomUpgrade = (Upgrade)values.GetValue(random.Next(values.Length));
-
-        return randomUpgrade;
-    }
 }

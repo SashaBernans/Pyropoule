@@ -36,8 +36,12 @@ public class WorldGenerator : MonoBehaviour
             instance = this;
         }
         else if (instance != this)
+        {
             Destroy(gameObject);
+        }
+
         DontDestroyOnLoad(gameObject);
+        
         assetRecycler = AssetRecycler.Instance;
         StartCoroutine(GenerateTerrainCoroutine());
     }
