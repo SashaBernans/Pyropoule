@@ -12,7 +12,7 @@ This is a prototype project showcasing basic gameplay mechanics. The current sta
 
 ## Features
 
-- Damage is disabled to simplify testing and focus on core mechanics.
+- Player receiving damage is disabled to simplify testing and focus on other mechanics.
 
 ## Known Issues
 
