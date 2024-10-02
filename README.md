@@ -20,4 +20,4 @@ This is a prototype project showcasing basic gameplay mechanics. The current sta
   
 - **Missing Upgrade Icons**: The upgrade panel is missing icons this results in unexpected behaviours. Some icons have not been designed yet.
 
-- **NullReferenceException in Lightning Chain**: A null exception occurs when the lightning chain is unable to find a water block to chain to. This needs further investigation.
+- **NullReferenceException in Lightning Chain**: A null exception occurs when the lightning chain is unable to find a water block to chain to. This happens because the next water block isnt spawned in yet.
