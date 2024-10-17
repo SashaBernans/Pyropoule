@@ -37,7 +37,6 @@ public class LongPlatformCollisions : MonoBehaviour
                 ManageShocks();
                 isLightningActive = true;
             }
-            print("Lightning hit long platform");
         }
     }
     private void OnDisable()

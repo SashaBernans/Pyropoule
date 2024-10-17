@@ -43,8 +43,6 @@ public class PanelManager : MonoBehaviour
 
         ///// Later I will have to sort for only activated upgrades
         IUpgradeable[] upgrades = GetRandomUpgradeables(upgradeables, options.Length);
-
-        print("Upgrades   "+ upgrades.Length);
         for (int i = 0; i<upgrades.Length; i++)
         {
             options[i].SetUpText(upgrades[i]);
