@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Collider2D PlayerForceField { get => playerForceField; }
     public Material FlashMaterial { get => flashMaterial; }
     public GameObject AttackSpeedUpgradeIcon { get => attackSpeedUpgradeIcon; set => attackSpeedUpgradeIcon = value; }
+    public Image PlaceHolderIcon { get => placeHolderIcon; set => placeHolderIcon = value; }
 
     public float secondsSinceStart = 0;
     public float height = 0;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject attackSpeedUpgradeIcon;
     [SerializeField] private GameObject damageUpgradeIcon;
     [SerializeField] private GameObject projectileSpeedUpgradeIcon;
+    [SerializeField] private Image placeHolderIcon;
 
     private int actualLevel = 0;
 

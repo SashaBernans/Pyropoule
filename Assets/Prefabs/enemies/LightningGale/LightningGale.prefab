@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7320283277340337907}
   - component: {fileID: 2376243570659442645}
   - component: {fileID: 7397392373903162443}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LightningGale
   m_TagString: Pyropoule
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -50,6 +50,10 @@ public class OptionText : MonoBehaviour
             {
                 icons[1].sprite = upgrade.GetIcon().sprite;
             }
+            else
+            {
+                icons[1].sprite = GameManager.Instance.PlaceHolderIcon.sprite;
+            }
         }
     }
 
