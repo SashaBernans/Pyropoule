@@ -83,16 +83,16 @@ public class WorldGenerator : MonoBehaviour
     private void ManageFlyingEnemiesSpawns()
     {
         Vector2 cameraPosition = Camera.main.transform.position;
-        Vector2 spawnPosition1 = new Vector2(cameraPosition.x + 8 , cameraPosition.y + 7);
-        Vector2 spawnPosition2 = new Vector2(cameraPosition.x - 8, cameraPosition.y + 7);
-        SpawnLightningGale(spawnPosition1);
-        SpawnLightningGale(spawnPosition2);
+        float y = lastLongPlateformLayerY + UNITS_BETWEEN_LONG_PLATEFORM_LAYERS / 2;
+        float x = cameraPosition.x;
+        SpawnLightningGale(new Vector2(x, y));
     }
 
     private void GenerateLayer()
     {
         if(CheckInactiveCount(assetRecycler.DirtBlockPool, MAX_BLOCKS_PER_LAYER) && CheckInactiveCount(assetRecycler.WaterBlockPool, MAX_BLOCKS_PER_LAYER))
         {
+            ManageFlyingEnemiesSpawns();
             for (int i = 0; i < 3; i++)
             {
                 GameObject longPlatform = GenerateLongPlatform(Random.Range(1, 5));
